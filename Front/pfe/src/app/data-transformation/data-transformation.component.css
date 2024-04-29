@@ -1,0 +1,76 @@
+.data-transformation {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #f2f2f2;
+}
+
+.data-transformation .sub-functionality {
+  cursor: pointer;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 115%;
+  
+  
+}
+
+.data-transformation .sub-functionality:hover{
+  /* color: #5c5a5a; */
+  font-size: 119%;
+}
+
+.data-transformation div {
+  /* display: none; */
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.data-transformation div.show {
+  display: block;
+}
+
+.conversion-section {
+  /* display: flex;  */
+  align-items: center; 
+  margin-bottom: 5px; 
+  border: 1px solid #beb6b6;;
+}
+/* .conversion-section span{
+  width: 60%;
+} */
+
+
+
+.convert-to {
+  margin-right: 5px; /* Add margin between label and select */
+}
+
+.data-transformation button{
+  background-color: #f17b13; /* Orange color as in image */
+  color: #fff; /* White text color */
+  padding: 5px 10px; /* Add padding for better appearance */
+  border: none; /* Remove default button border */
+  border-radius: 15px; /* Add rounded corners */
+  cursor: pointer; /* Indicate clickable action */
+  width: 50%;
+  margin-left: 28%;
+  margin-top: 3%;
+}
+
+/****************************************************dicretize********************************************************************/
+
+.discretization-section{
+
+}
+.bin-labels{
+  height: 80px;
+  overflow-y: auto;
+}
+
+

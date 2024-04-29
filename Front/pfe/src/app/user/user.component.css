@@ -1,0 +1,310 @@
+.user-dashboard {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .sidebar {
+    /* width: 25%; */
+    padding: 1rem;
+    background-color: #040404;
+    border-right: 1px solid #0c0c0c;
+  }
+  
+  .left {
+    /* Additional styles for left sidebar */
+    width: 20%;
+  }
+  
+  .right {
+    /* Additional styles for right sidebar */
+    width: 20%;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    /* Add other container styles if needed */
+    width: 60%;
+  }
+  
+  .section {
+    margin-bottom: 1rem;
+    
+  }
+
+  /***********************uploaded files section ************************************/
+
+
+  
+  .file-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .file-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #ddd;
+    
+  }
+  
+  .file-name {
+    font-weight: bold;
+    color: white;
+  }
+  
+
+  
+
+  .delete-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .delete-button:hover {
+    color: #c00; 
+  }
+
+  /* .download-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .download-button:hover {
+    color: #c00; 
+  } */
+
+  
+  .no-files-message {
+    text-align: center;
+    color: #ccc;
+  }
+  
+
+  .show-more-button{
+    margin-top: 0.3rem;
+    padding: 3%;
+    display: block;
+    /* text-align: center; */
+    background-color: #040404;
+    font-size: 70%;
+    /* border: 0.1px solid white; */
+    color: rgb(203, 203, 203);
+    cursor: pointer;
+    
+  }
+
+  .show-more-button:hover{
+    /* border-bottom: 1px solid #ddd; */
+    color: #f17b13;
+    font-size: 75%;
+    
+  }
+
+  
+.close-button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.close-button i {
+  font-size: 20px;
+  color: #888;
+}
+
+.close-button {
+  color: red;
+}
+
+
+
+.file-name:hover {
+  color: #c3bdbd;
+  cursor: pointer;
+}
+
+
+.close-button:hover i {
+  color: #000;
+}
+
+.close-button:hover {
+  color: darkred;
+}
+  
+
+
+  
+
+  /*********************************************************************************/
+
+  
+  h3 {
+    color: white;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+
+  .module-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+
+  .module-list li {
+    margin-bottom: 0.5rem;
+  }
+  
+  button {
+    background-color: #f17b13;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .module-list button {
+    background-color: #f17b13;
+    border: 1px solid #f17b13;
+    width: 85%;
+    border-radius: 25px;
+  }
+  
+
+
+/**********************************DROP ZONE CSS***************************************************/
+
+
+.file-container {
+  border: 2px dashed #ddd;
+  padding: 1.5rem;
+  text-align: center;
+  background-color: #3d3939;
+  cursor: pointer;
+  color: #efe8e8;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out; /* Add transition for hover effect */
+}
+
+
+.file-container:hover {
+  background-color: #eee; /* Change background color on hover */
+}
+
+.file-container label {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.file-select-text {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.file-preview {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.file-name {
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+.file-preview button {
+  background-color: #ea7f22;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out; /* Add transition for hover effect */
+}
+
+.file-preview button:hover {
+  background-color: #d7731a; /* Change button color on hover */
+}
+
+.button-disabled {
+  background-color: #ddd;
+  cursor: default;
+}
+
+
+
+  
+
+  /******************************************************************************************************/
+
+  /*******************************Data preview***********************************************************/
+  .data-preview {
+    flex: 1; /* Make the data preview take up half of the space */
+    padding: 1rem;
+    background-color: rgb(0, 0, 0);
+    margin-bottom: 0%;
+    margin-left: 0%;
+    display: flex;
+    flex-direction:column;
+   
+
+  }
+
+
+
+  .data-preview h2{
+    margin-left: 40%;
+    color: white;
+  }
+  
+  .data-preview-table{
+    height: 500px;  
+    width: 101%;
+    overflow: auto;
+  }
+
+  .data-preview table {
+    
+    border-collapse: collapse;
+    background-color: rgb(5, 5, 5);
+    color: white;
+ 
+  }
+  .data-preview thead{
+    position: sticky;
+    top:0;
+    background-color: #000;
+    
+  }
+  
+  th,
+  td {
+    padding: 0.5rem;
+    border: 1px solid #736d6d;
+  }
+  th{
+    cursor: pointer;
+  }
+
+  .data-preview-table th.selected-column {
+    /* Styling for the selected column header */
+    background-color: #eee;
+    font-weight: bold;
+    
+  }
+
+  
+  
+

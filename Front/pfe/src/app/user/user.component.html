@@ -1,0 +1,116 @@
+<div class="user-dashboard">
+    <div class="sidebar left">
+      <!-- <div class="section">
+        <h3>Uploaded Files</h3>
+        <ul class="file-list" >
+          <li *ngFor="let file of uploadedFiles">
+            <span class="file-name">{{ file.file_name }}</span>
+            <button class="delete-button" (click)="deleteFile(file.id)">
+              <i class="material-icons">delete</i>
+            </button>
+          </li>
+        </ul>
+        <p class="no-files-message" *ngIf="uploadedFiles?.length === 0">No uploaded files yet.</p>
+      </div> -->
+
+<div class="section">
+  <h3>Uploaded Files</h3>
+  <ul class="file-list">
+    <li *ngFor="let file of uploadedFiles.slice(0, showMore ? uploadedFiles.length : 3)">
+      <span class="file-name" (click)="openFile(file.id)"> {{ file.file_name }}
+      </span>
+      <button class="delete-button" *ngIf="openedFileId != file.id" (click)="confirmDelete(file.id)">
+        <i class="material-icons">delete</i>
+      </button>
+      <button class="close-button" *ngIf="openedFileId === file.id" (click)="closeFile(file.id)"> Close
+      </button>
+      <!-- <button class="download-button" *ngIf="openedFileId && openedFileId === file.id" (click)="downloadFile()">Download</button> -->
+    </li>
+  </ul>
+  <p class="no-files-message" *ngIf="uploadedFiles?.length === 0">No uploaded files yet.</p>
+  <span class="show-more-button" *ngIf="uploadedFiles.length > 3" (click)="showMoreFiles()">
+    {{ showMore ? 'Show Less' : 'Show More Files' }}
+   
+  </span>
+</div>
+
+      
+      
+      <div class="section">
+        <h3>Modules</h3>
+        <ul class="module-list">
+          <li *ngFor="let module of modules">
+            <button (click)="selectModule(module)">{{ module }}</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="container">  
+      
+      <div class="file-container" *ngIf="!uploadedFile && !openedFileId">
+        <label for="file-input">
+          <span class="file-select-text">Drag & Drop or Click to Select</span>
+          <input type="file" id="file-input" (change)="onFileSelected($event)" hidden />
+        </label>
+      </div>
+      
+      <div class="file-preview" *ngIf="uploadedFile">
+        <span class="file-name">{{ uploadedFile.name }}</span>
+        <button (click)="uploadedFile = null">Clear</button>
+      </div>
+      <br />
+      <button (click)="uploadFile()" *ngIf= "!openedFileId" [disabled]="!uploadedFile">Upload File</button>
+      
+      
+      <div class="data-preview">
+        <h2>Data Preview</h2>
+       
+
+        <div class="data-preview-table">
+          <!-- <table>
+            <thead >
+              <tr>
+                <th *ngFor="let header of displayedData[0]">{{ header }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of displayedData.slice(1)">
+                <td *ngFor="let cell of row">{{ cell }}</td>
+              </tr>
+          
+            </tbody>
+          </table> -->
+
+          <table>
+            <thead (click)="onHeaderClick($event)">
+               <tr>
+                <th *ngFor="let header of displayedData[0]" [ngClass]="{ 'selected-column': selectedColumn === header }">{{ header }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of displayedData.slice(1)">
+                <td *ngFor="let cell of row">{{ cell }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+        <button class="download-button" *ngIf="openedFileId" (click)="downloadFile()">Download Data</button>
+      </div>
+    </div>
+   
+   
+    <div class="sidebar right">
+      <div class="section">
+        <h3 *ngIf="selectedModule">{{ selectedModule }} Functions</h3>
+        </div>
+        <div class="content">
+          <app-data-division *ngIf="selectedModule === 'Data Division'" [datasetId]="openedFileId"></app-data-division>
+        </div>
+
+        <div class="content">
+          <app-data-transformation *ngIf="selectedModule === 'Data Transformation'" [datasetId]="openedFileId"  [selectedColumn]='selectedColumn' (dataUpdated)="re_openFile()"></app-data-transformation>
+        </div>
+    </div>
+  </div>
+  

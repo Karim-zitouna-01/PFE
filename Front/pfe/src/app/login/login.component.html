@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataPrism Login</title>
+  <link rel="stylesheet" href="./login.component.css">
+  
+</head>
+<body>
+  <h1 class="app-title">DataPrism</h1>
+  <p class="sub-title">Manage data efficiently.</p>
+  <div class="container">
+    <div class="left-side">
+      <img src="/assets/img.jpg">
+      <h1>DataPrism simplifies data analysis.</h1>
+    </div>
+    <div class="right-side">
+      <h1>Log in</h1>
+      <form [formGroup]="form" (submit)="submit()">
+        <label for="email">email</label>
+        <input type="email" class="form-control" id="email" formControlName="email" required placeholder="Enter your email">
+        <label for="password">password</label>
+        <input type="password" class="form-control" id="password" formControlName="password" required placeholder="*******">
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

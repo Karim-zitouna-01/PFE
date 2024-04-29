@@ -1,0 +1,38 @@
+.data-division {
+  background-color: #f2f2f2; /* Light gray background */
+  border: 1px solid #ddd; /* Light gray border */
+  border-radius: 4px;
+  padding: 1rem;
+
+}
+
+.data-division h2 {
+  color: #333; /* Black heading */
+  margin-bottom: 0.5rem;
+}
+
+.data-division form {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+}
+
+.data-division .input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.data-division .input-group label {
+  margin-right: 0.5rem; /* Space between label and input */
+  color: #333; /* Black label text */
+}
+
+.data-division button {
+  background-color: #f17b13; /* Orange button */
+  color: white; /* White button text */
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  cursor: pointer; /* Indicate interaction on hover */
+  font-size: 110%;
+}

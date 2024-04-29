@@ -1,0 +1,10 @@
+<div class="data-division">
+  <!-- <h2>Data Division</h2> -->
+  <form (ngSubmit)="divideData()">
+    <div class="input-group">
+      <label for="test-size">Test Size (%):</label>
+      <input type="number" id="test-size" min="0" max="100" step="1" name="testSize" [(ngModel)]="testSize" required>
+    </div>
+    <button type="submit">Divide Data</button>
+  </form>
+</div>

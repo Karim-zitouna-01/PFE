@@ -1,0 +1,78 @@
+<div class="data-transformation">
+  <!-- <h3>Data Transformation</h3> -->
+
+  <span class="sub-functionality" *ngIf="selectedTransformation === '' || selectedTransformation === 'conversion'" (click)="toggleFunctionality('conversion')">Conversion</span>
+  <div *ngIf="selectedTransformation === 'conversion'">
+    <div class="conversion-section">
+      <span>Selected Column: {{ selectedColumn }}</span>
+      <span class="convert-to">Convert to:
+      <select [(ngModel)]="selectedConversionType">
+        <option value="int">Integer</option>
+        <option value="float">Float</option>
+        <option value="string">String</option>
+      </select>
+    </span>
+    </div>
+    <button class="convert-button" (click)="convertData()">Convert</button>
+  </div>
+
+  
+    <span class="sub-functionality" *ngIf="selectedTransformation === '' || selectedTransformation === 'discretization'" (click)="toggleFunctionality('discretization')">Discretization</span>
+    <div class="discretization-section" *ngIf="selectedTransformation === 'discretization'">
+      <span>Discretization Method:</span>
+      <select [(ngModel)]="selectedDiscretization">
+        <option value="equal-width">Equal Width</option>
+        <option value="equal-frequency">Equal Frequency</option>
+      </select>
+      
+      <span>Selected Column: {{ selectedColumn }}</span>
+      
+      <span>Number of Bins:
+        <input type="number" [(ngModel)]="numBins" (change)="updateBinLabels()">
+      </span>
+      
+      <div >
+        <span >Bin Labels:</span>
+        <div class="bin-labels" >
+          <div *ngFor="let label of binLabels; let i = index">
+            <span>Bin {{ i + 1 }}:</span>
+            <input type="text" #binInput  [(ngModel)]="binLabels[i]" (blur)="onBinBlur(i, binInput.value)">
+          </div>
+        </div>
+      </div>
+      <button (click)="discretizeData()">Discretize</button>
+    </div>
+    
+
+  
+
+
+
+
+
+
+  <!-- <span class="sub-functionality" *ngIf="selectedTransformation === '' || selectedTransformation === 'discretization'" (click)="toggleFunctionality('discretization')">Discretization</span>
+  <div *ngIf="selectedTransformation === 'discretization'">
+
+    <span *ngIf="selectedDiscretization === 'cut'">Cut</span>
+
+
+    <span *ngIf="selectedDiscretization === 'qcut'">qCut</span>
+    <br>
+    <span>Selected Column: {{ selectedColumn }}</span>
+    <input type="number" [(ngModel)]="numBins">
+    <button (click)="discretizeData()">Discretize</button>
+  </div> -->
+
+
+
+
+
+  <span class="sub-functionality" *ngIf="selectedTransformation === '' || selectedTransformation === 'sampling'" (click)="toggleFunctionality('sampling')">Sampling</span>
+  <div *ngIf="selectedTransformation === 'sampling'">
+    <span *ngIf="selectedSampling === 'overSampling'">Over-sampling</span>
+    <span *ngIf="selectedSampling === 'underSampling'">Under-sampling</span>
+    <br>
+    <button (click)="sampleData()">Sample</button>
+  </div>
+</div>

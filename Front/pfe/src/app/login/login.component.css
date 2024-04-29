@@ -1,0 +1,109 @@
+body {
+  background-color: black;
+  margin: 0; /* Remove default margins */
+}
+
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  position: fixed; /* Make the container absolute-positioned */
+  left: 0; /* Position it at the left edge of the screen */
+  top: 0;
+  margin-top: 1.5cm;
+  background-color: black;
+  
+}
+
+.app-title {
+  position: absolute; /* Make the title absolutely positioned */
+  top: 2; /* Position it at the top edge of the screen */
+  right: 2cm; /* Position it at the right edge of the screen */
+  /* (Optional) Adjust other styles like font-size, margin, padding */
+  z-index: 1;
+  color: white;
+}
+
+.sub-title {
+  position: absolute; /* Make the title absolutely positioned */
+  top: 3.3cm; /* Position it at the top edge of the screen */
+  right: 1.7cm; /* Position it at the right edge of the screen */
+  /* (Optional) Adjust other styles like font-size, margin, padding */
+  z-index: 1;
+  color: white;
+}
+
+
+.left-side,
+.right-side {
+  flex: 1;
+ padding: 2rem;
+}
+
+.left-side {
+  background-color: rgb(234, 127, 34);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 8%;
+  margin-right: 12%;
+  
+}
+
+.left-side img {
+  width: 50%;
+  object-fit: cover;
+  
+}
+
+.left-side h1 {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.left-side p {
+  color: white;
+  font-size: 1rem;
+}
+
+.right-side {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.right-side h1 {
+  font-size: 2rem;
+  margin-top: 0; /* Move to top margin */
+  margin-bottom: 2rem;
+}
+
+.form-control {
+  margin-bottom: 1rem;
+  color: white;
+  background-color: #f2f2f2b3; /* Light gray background for inputs */
+  border: none;
+  padding: 0.75rem 1rem;
+  margin-top: 2%;
+  border-radius: 30px;
+
+  /*added*/
+  width: 65%;
+}
+
+.btn-primary {
+  background-color: white; /* White button */
+  border-color: white;
+  color: black;
+  padding: 1rem 1.5rem;
+  width: 65%;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top:3% ;
+}

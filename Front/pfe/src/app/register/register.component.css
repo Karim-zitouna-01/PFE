@@ -1,0 +1,67 @@
+.container {
+    display: flex; /* Make container a flex container */
+    width: 100vw; /* Set width to 100% viewport width */
+    height: 85vh; /* Set height to 100% viewport height */
+    background-color: black; /* Set background color to black */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .left-side,
+  .right-side {
+    flex: 1; /* Make each side occupy half the width */
+   /* padding: 2rem;*/ /* Add some padding */
+  }
+  
+  .left-side {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center the image vertically and horizontally */
+  }
+  
+  .left-side img {
+    width: 70%; /* Scale image to fit the left side */
+    height: auto; /* Maintain image aspect ratio */
+    margin: 0;
+  }
+  
+  .right-side {
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+    justify-content: center; /* Center form elements vertically */
+    align-items: center; /* Center form elements horizontally */
+  }
+  
+  .right-side h1 {
+    margin-bottom: 1rem; /* Add some margin below the heading */
+    color: white; /* Set text color to white */
+    position: absolute;
+    top: 15%;
+  }
+
+  label{
+    color: white;
+  }
+  
+  .form-control {
+    margin-bottom: 12%; /* Add some margin between form controls */
+    margin-top: 7%;
+    border-radius:30px ;
+    width: 130%;
+
+    color: white;
+    background-color: #f2f2f2b3;
+    border-color:#f2f2f2b3 ;
+
+  }
+  
+  .btn-primary {
+    background-color:rgb(234, 127, 34); /* Set button background color to orange */
+    color: white; /* Set button text color to white */
+    border-color: rgb(234, 127, 34); /* Set button border color to orange */
+    padding: 0.5rem 1rem; /* Adjust button padding as needed */
+    margin-top: 5%;
+    border-radius: 35px;
+    width: 130%;
+  }
+  
