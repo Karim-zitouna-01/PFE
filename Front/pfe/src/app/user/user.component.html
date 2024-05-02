@@ -17,8 +17,10 @@
   <h3>Uploaded Files</h3>
   <ul class="file-list">
     <li *ngFor="let file of uploadedFiles.slice(0, showMore ? uploadedFiles.length : 3)">
-      <span class="file-name" (click)="openFile(file.id)"> {{ file.file_name }}
-      </span>
+      <span class="file-name" *ngIf="openedFileId==0 || !openedFileId || openedFileId==file.id" (click)="openFile(file.id)"> {{ file.file_name }}</span>
+
+      <span class="file-name" *ngIf="openedFileId!=0 && openedFileId != file.id && openedFileId"  > {{ file.file_name }}</span>
+      
       <button class="delete-button" *ngIf="openedFileId != file.id" (click)="confirmDelete(file.id)">
         <i class="material-icons">delete</i>
       </button>

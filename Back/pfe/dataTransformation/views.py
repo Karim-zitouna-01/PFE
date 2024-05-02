@@ -55,6 +55,7 @@ class DiscretizeView(APIView):
     bins = request.data.get('bins')
     names = request.data.get('names', None)
     strategy = request.data.get('strategy', 'cut')
+    print(request.data)
 
     if not all([dataset_id, column_name, bins, strategy]):
       return Response({'error': 'Missing required fields'}, status=status.HTTP_400_BAD_REQUEST)
@@ -96,6 +97,7 @@ class SampleView(APIView):
     target_column = request.data.get('target_column')
     sampling_method = request.data.get('sampling_method')
     minority_class = request.data.get('minority_class', None)
+    print(request.data)
     # Add optional keyword arguments based on your chosen sampling methods (e.g., k_neighbors for NearMiss)
 
     if not all([dataset_id, target_column, sampling_method]):

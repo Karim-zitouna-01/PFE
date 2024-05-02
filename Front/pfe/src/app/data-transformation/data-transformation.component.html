@@ -4,7 +4,7 @@
   <span class="sub-functionality" *ngIf="selectedTransformation === '' || selectedTransformation === 'conversion'" (click)="toggleFunctionality('conversion')">Conversion</span>
   <div *ngIf="selectedTransformation === 'conversion'">
     <div class="conversion-section">
-      <span>Selected Column: {{ selectedColumn }}</span>
+      <span>Selected Column: <b>{{ selectedColumn }}</b></span>
       <span class="convert-to">Convert to:
       <select [(ngModel)]="selectedConversionType">
         <option value="int">Integer</option>
@@ -25,7 +25,7 @@
         <option value="equal-frequency">Equal Frequency</option>
       </select>
       
-      <span>Selected Column: {{ selectedColumn }}</span>
+      <span>Selected Column: <b>{{ selectedColumn }}</b></span>
       
       <span>Number of Bins:
         <input type="number" [(ngModel)]="numBins" (change)="updateBinLabels()">
@@ -34,9 +34,9 @@
       <div >
         <span >Bin Labels:</span>
         <div class="bin-labels" >
-          <div *ngFor="let label of binLabels; let i = index">
-            <span>Bin {{ i + 1 }}:</span>
-            <input type="text" #binInput  [(ngModel)]="binLabels[i]" (blur)="onBinBlur(i, binInput.value)">
+          <div *ngFor="let label of binLabels; let i = index; trackBy: trackByFn">
+            <span>Bin {{ i+1 }}:</span>
+            <input type="text"  [(ngModel)]="binLabels[i]" >
           </div>
         </div>
       </div>
@@ -68,11 +68,39 @@
 
 
 
-  <span class="sub-functionality" *ngIf="selectedTransformation === '' || selectedTransformation === 'sampling'" (click)="toggleFunctionality('sampling')">Sampling</span>
+  <!-- <span class="sub-functionality" *ngIf="selectedTransformation === '' || selectedTransformation === 'sampling'" (click)="toggleFunctionality('sampling')">Sampling</span>
   <div *ngIf="selectedTransformation === 'sampling'">
     <span *ngIf="selectedSampling === 'overSampling'">Over-sampling</span>
     <span *ngIf="selectedSampling === 'underSampling'">Under-sampling</span>
     <br>
     <button (click)="sampleData()">Sample</button>
   </div>
+</div> -->
+
+ <span class="sub-functionality" *ngIf="selectedTransformation === '' || selectedTransformation === 'sampling'" (click)="toggleFunctionality('sampling')">Sampling</span>
+ <div *ngIf="selectedTransformation === 'sampling'" >
+  <span>Sampling Method:</span>
+  <select [(ngModel)]="selectedSamplingMethod">
+    <option value="over-sampling">Over-Sampling</option>
+    <option value="under-sampling">Under-Sampling</option>
+  </select>
+  <span>Selected Column: <b>{{ selectedColumn }}</b></span>
+  
+  <span >Algorithm:</span>
+  <select *ngIf="selectedSamplingMethod === 'over-sampling'" [(ngModel)]="selectedSamplingAlgorithm">
+    <option value="SMOTE">SMOTE</option>
+    <option value="ADASYN">ADASYN</option>
+    <option value="RandomOverSampler">Random Over-Sampling</option>
+  </select>
+ 
+  
+  <select *ngIf="selectedSamplingMethod === 'under-sampling'" [(ngModel)]="selectedSamplingAlgorithm">
+    <option value="ClusterCentroids">Cluster Centroids</option>
+    <option value="NearMiss">NearMiss</option>
+    <option value="RandomUnderSampler">Random Under-Sampling</option>
+  </select>
+  
+  <button (click)="sampleData()">Sample Data</button>
+
 </div>
+

@@ -23,6 +23,9 @@ export class DataTransformationComponent {
   selectedSampling: string='';
   binLabels:any[]=[];
   numBins: number=0;
+  trackByFn() {}
+  selectedSamplingMethod='';
+  selectedSamplingAlgorithm='';
 
   constructor(private http: HttpClient) {}
 
@@ -69,28 +72,75 @@ export class DataTransformationComponent {
   discretizeData(){
     if(!this.datasetId) alert("please open a dataset ");
     else if(!this.selectedColumn) alert("please select a column")
-    else if (this.selectedDiscretization='') alert(" you should select a dicretization method");
+    else if (this.selectedDiscretization=='') alert(" you should select a dicretization method");
     for(let label of this.binLabels){
       if(label==''){
         alert("you should label your all the bins");
         break;
       }
     }
+  
+    const requestBody = {
+      dataset_id: this.datasetId, 
+      column_name: this.selectedColumn,
+      bins: this.numBins,
+      names: this.binLabels,
+      strategy: this.selectedDiscretization === 'equal-width' ? 'cut' : 'qcut'
+      };
+
+    this.http.post<any>('http://localhost:8000/api/transformation/discretize/', requestBody) // Replace with your API endpoint
+      .subscribe(response => {
+        if (response.message) {
+          // Success
+          //alert(response.message); // Display success message as alert
+          this.dataUpdated.emit();
+        } else if (response.error) {
+          // Error
+          alert(response.error); // Display error message as alert
+        }
+      });
 
     console.log(this.binLabels);
 
 
   }
-  onBinBlur(index: number, value: string) {
+  updateBinLabel(index: number, value: string) {
     this.binLabels[index] = value;
-    
   }
   
   updateBinLabels() {
-    this.binLabels = new Array(this.numBins).fill('test'); // Create array with size numBins and fill with empty strings
+    this.binLabels = new Array(this.numBins).fill(''); // Create array with size numBins and fill with empty strings
   }
 
   sampleData(){
+    if(!this.datasetId) alert("please open a dataset ");
+    else if(!this.selectedColumn) alert("please select a column");
+    else if(!this.selectedSamplingMethod) alert("please a sampling method");
+    else if(!this.selectedSamplingAlgorithm) alert("No sampling algorithm choosen!");
+
+    else{
+
+      const requestBody = {
+        dataset_id: this.datasetId, 
+        target_column: this.selectedColumn,
+        sampling_method: this.selectedSamplingAlgorithm
+        };
+  
+      this.http.post<any>('http://localhost:8000/api/transformation/sample/', requestBody) // Replace with your API endpoint
+        .subscribe(response => {
+          if (response.message) {
+            // Success
+            //alert(response.message); // Display success message as alert
+            this.dataUpdated.emit();
+          } else if (response.error) {
+            // Error
+            alert(response.error); // Display error message as alert
+          }
+        });
+
+
+        console.log(requestBody);
+    }
 
   }
 }
