@@ -1,0 +1,125 @@
+<div class="data-analysis">
+    <span class="sub-functionality" (click)="toggleFunctionality('statistics')">Descriptive Statistics</span>
+    <div *ngIf="selectedAnalysis === 'statistics'">
+      <span >
+        Calculate statistics for:
+        <select [(ngModel)]="selectedOption">
+          <option value="all">Entire Dataset</option>
+          <option value="column">Specific Column</option>
+        </select>
+      </span>
+      <span *ngIf="selectedOption === 'column'">
+        Selected Column: <b>{{ selectedColumn }}</b>
+      </span>
+
+      <button class="visualize-button" (click)="getStatistics()">Visualize</button>
+    </div>
+  
+
+
+
+
+    <span class="sub-functionality" (click)="toggleFunctionality('visualization')">Data Visualization</span>
+    <div *ngIf="selectedAnalysis === 'visualization'">
+      <span>Select visualization type:</span>
+      <select [(ngModel)]="selectedVisType">
+        <option value="numeric">Numeric Distribution</option>
+        <option value="categorical">Categorical Distribution</option>
+        <option value="relationship">Relationship Between Features</option>
+      </select>
+      <div *ngIf="selectedVisType === 'numeric'">
+        <span>Select Column: <b>{{ selectedColumn }}</b></span>
+
+      </div>
+
+      <div *ngIf="selectedVisType === 'categorical'">
+        <span>Select visualization type:</span>
+        <select [(ngModel)]="selectedChartType">
+          <option value="pie">Pie Chart</option>
+          <option value="bar">Bar Chart</option>
+        </select>
+        <span>Select Column: <b>{{ selectedColumn }}</b></span>
+      </div>
+
+      <div *ngIf="selectedVisType === 'relationship'">
+        <span *ngIf="!selectedVisFeature1">Select first feature:</span>
+        <span *ngIf="selectedVisFeature1">Selected first feature: {{ selectedVisFeature1}}</span>
+        <input *ngIf="!selectedVisFeature1" type="text" [(ngModel)]="selectedColumn" (blur)="updateFeature1()">
+       
+        <span *ngIf="selectedVisFeature1 && !selectedVisFeature2">Select second feature:</span>
+        <span *ngIf="selectedVisFeature2">Selected second feature: {{ selectedVisFeature2 }}</span>
+        <input *ngIf="selectedVisFeature1 && !selectedVisFeature2" type="text" [(ngModel)]="selectedColumn" (blur)="updateFeature2()">
+      </div>
+      <button class="visualize-button" (click)="getVisualization()">Visualize</button>
+  </div>
+  
+
+  <div class="stats" *ngIf="selectedAnalysis === 'statistics'">
+
+
+      
+      <div *ngIf="statisticsData">
+        <h3>{{ selectedOption === 'all' ? 'Dataset Statistics' : 'Column Statistics' }}</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Statistics</th>
+              <th *ngFor="let colName of statisticsData.data_stats | keyvalue">
+                {{ colName.key }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mean</td>
+              <td *ngFor="let col of statisticsData.data_stats | keyvalue">
+                {{ col.value.mean }}  
+              </td>
+            </tr>
+            <tr>
+              <td>Median</td>
+              <td *ngFor="let col of statisticsData.data_stats | keyvalue">
+                {{ col.value.median }}
+              </td>
+            </tr>
+            <tr>
+              <td>Max</td>
+              <td *ngFor="let col of statisticsData.data_stats | keyvalue">
+                {{ col.value.max }}
+              </td>
+            </tr>
+            <tr>
+              <td>Min</td>
+              <td *ngFor="let col of statisticsData.data_stats | keyvalue">
+                {{ col.value.min }}
+              </td>
+            </tr>
+            <tr>
+              <td>Mode</td>
+              <td *ngFor="let col of statisticsData.data_stats | keyvalue">
+                {{ col.value.mode }}
+              </td>
+            </tr>
+            <tr>
+                <td>Missing Values</td>
+                <td *ngFor="let col of statisticsData.data_stats | keyvalue">
+                  {{ col.value.n_missing }}
+                </td>
+              </tr>
+
+              
+            </tbody>
+          </table>
+          <p *ngIf="selectedOption === 'all'">Number of Rows: {{ nb_rows }}</p>
+          <p *ngIf="selectedOption === 'all'">Number of Columns: {{ nb_columns }}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="visualizationImage" *ngIf="selectedAnalysis === 'visualization'">
+        
+          <img *ngIf="visualizationImage" src="{{ visualizationImage }}" alt="Data Visualization">
+        
+      </div>

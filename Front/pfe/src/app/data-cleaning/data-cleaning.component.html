@@ -1,0 +1,35 @@
+<div class="data-cleaning">
+    <span class="sub-functionality" *ngIf="selectedCleaning === '' || selectedCleaning === 'missing-values'" (click)="toggleFunctionality('missing-values')">Impute Missing Values</span>
+    <div *ngIf="selectedCleaning === 'missing-values'">
+      <div class="missing-values-section">
+        <span>Selected Column: <b>{{ selectedColumn }}</b></span>
+        <span class="imputation-method">Imputation Method:
+          <select [(ngModel)]="selectedImputationMethod">
+            <option value="mean">Mean</option>
+            <option value="median">Median</option>
+            <option value="mode">Mode</option>
+            <option value="listwise">listwise-deletion</option>
+            <option value="Global_KNN_impute">Global_KNN_impute</option>
+          </select>
+        </span>
+        <button class="impute-button" (click)="imputeMissingValues()">Impute</button>
+      </div>
+    </div>
+  
+    <span class="sub-functionality" *ngIf="selectedCleaning === '' || selectedCleaning === 'outliers'" (click)="toggleFunctionality('outliers')">Handle Outliers</span>
+    <div class="outliers-section" *ngIf="selectedCleaning === 'outliers'">
+        <span>Selected Column: <b>{{ selectedColumn }}</b></span>
+      <span>Outlier Handling Method:</span>
+      <select [(ngModel)]="selectedOutlierMethod">
+        <option value="remove">Remove Outliers</option>
+        <option value="log">Log Transform</option>
+        <option value="sqrt">Square Root Transform</option>
+      </select>
+      <div *ngIf="selectedOutlierMethod === 'remove'">
+        <span>Threshold (optional):</span>
+        <input type="number" [(ngModel)]="outlierThreshold">
+      </div>
+      <button class="handle-outliers-button" (click)="handleOutliers()">Handle</button>
+    </div>
+  </div>
+  

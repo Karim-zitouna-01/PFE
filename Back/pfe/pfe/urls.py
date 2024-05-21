@@ -22,5 +22,8 @@ urlpatterns = [
     path('api/', include('users.urls')),
     path('api/', include('dataSets.urls')),
     path('api/',include('dataDivision.urls')),
-    path('api/transformation',include('dataTransformation.urls'))
+    path('api/transformation',include('dataTransformation.urls')),
+    path('api/cleaning',include('dataCleaning.urls')),
+    path('api/analysis',include('dataAnalysis.urls'))
 ]
+

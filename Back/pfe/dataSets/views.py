@@ -114,7 +114,7 @@ class DatasetExportView(APIView):
 
                 # Create in-memory file-like object
                 response = HttpResponse(content_type='text/csv')
-                response['Content-Disposition'] = f'attachment; filename={dataset.file_name}.csv'  # Set filename dynamically
+                response['Content-Disposition'] = f'attachment; filename={dataset.file_name}'  # Set filename dynamically
 
                 # Write content to the response
                 response.write(file_content)
@@ -210,7 +210,39 @@ class CloseFileView(APIView):
 
 
 
+class OverwriteDataset(APIView):
+    def post(self, request, pk):
+        try:
+            token = request.COOKIES.get('jwt')
+            if not token:
+                raise AuthenticationFailed('Unauthenticated!')
 
+            payload = jwt.decode(token, 'secret', algorithms=['HS256'])
+            user = User.objects.filter(id=payload['id']).first()
+            self.request.user = user  # Set user in request context
+
+            try:
+                dataset = Dataset.objects.get(pk=pk, owner=request.user)  # Filter by user ownership
+            except Dataset.DoesNotExist:
+                return Response({'error': 'Dataset not found or permission denied'}, status=404)
+
+            serializer = DatasetSerializer(dataset, data=request.data, context={'user': user}, partial=True)
+            if serializer.is_valid():
+
+                old_file_path = dataset.uploaded_file.path
+                os.remove(old_file_path)
+
+                serializer.save()
+                print(request.data)
+
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            print(request.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Unauthenticated!')
+        except jwt.DecodeError:
+            raise AuthenticationFailed('Invalid token!')
 
 
 

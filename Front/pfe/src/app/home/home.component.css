@@ -80,9 +80,10 @@
 }
 
 .card-image-container {
-  width: 50%;
+  width: 60%;
   height: 100%;
   right: 0;
+  background-color: black;
 }
 
 .card-image {

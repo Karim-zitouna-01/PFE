@@ -20,7 +20,7 @@
   }
   
   .left-side img {
-    width: 70%; /* Scale image to fit the left side */
+    width: 60%; /* Scale image to fit the left side */
     height: auto; /* Maintain image aspect ratio */
     margin: 0;
   }

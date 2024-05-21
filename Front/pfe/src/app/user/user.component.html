@@ -1,3 +1,8 @@
+<head>
+  <!-- other head elements -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQq7Ml8WsgGqQYGDeL/j8XgOngs6YX04QQXA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
 <div class="user-dashboard">
     <div class="sidebar left">
       <!-- <div class="section">
@@ -65,8 +70,14 @@
       
       
       <div class="data-preview">
-        <h2>Data Preview</h2>
-       
+        <div class="data-preview-actions">
+          
+          <button (click)="undo()" title="Undo">&#8634;</button>
+          <button (click)="redo()" title="Redo">&#8635;</button>
+          <button (click)="resetData()" title="Reset">&#10006;</button>
+          <h2>Data Preview</h2>
+        </div>
+
 
         <div class="data-preview-table">
           <!-- <table>
@@ -111,7 +122,15 @@
         </div>
 
         <div class="content">
-          <app-data-transformation *ngIf="selectedModule === 'Data Transformation'" [datasetId]="openedFileId"  [selectedColumn]='selectedColumn' (dataUpdated)="re_openFile()"></app-data-transformation>
+          <app-data-transformation *ngIf="selectedModule === 'Data Transformation'" [datasetId]="openedFileId"  [selectedColumn]='selectedColumn' (dataUpdated)="re_openFile()"  (dataTransformed)="storeDataForUndo()"></app-data-transformation>
+        </div>
+
+        <div class="content">
+          <app-data-cleaning *ngIf="selectedModule === 'Data Cleaning'" [datasetId]="openedFileId"  [selectedColumn]='selectedColumn' (dataUpdated)="re_openFile()"  (dataTransformed)="storeDataForUndo()"></app-data-cleaning>
+        </div>
+
+        <div class="content">
+          <app-data-analysis *ngIf="selectedModule === 'Data Analysis'" [datasetId]="openedFileId"  [selectedColumn]='selectedColumn'></app-data-analysis>
         </div>
     </div>
   </div>

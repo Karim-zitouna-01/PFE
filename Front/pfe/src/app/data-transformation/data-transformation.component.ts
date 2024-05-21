@@ -8,11 +8,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class DataTransformationComponent {
   @Input()
-  selectedColumn!: string; // Assuming you receive the selected column ID from the user component
+  selectedColumn!: string; // receive the selected column name from the user component
 
-  @Input() datasetId: number | undefined;
+  @Input() datasetId: number | undefined;  //receive the dataset id from the user component.
 
   @Output() dataUpdated = new EventEmitter<void>();
+  @Output() dataTransformed =new EventEmitter<void>();
 
 
   selectedTransformation: string = ''; // Initial value is empty string
@@ -47,12 +48,16 @@ export class DataTransformationComponent {
   convertData() {
     if(!this.datasetId) alert("please open a dataset ");
     else if(!this.selectedColumn) alert("please select a column")
+    else 
+    {
+      this.dataTransformed.emit();
 
     const requestBody = {
       dataset_id: this.datasetId, 
       column_name: this.selectedColumn,
       target_type: this.selectedConversionType
     };
+    
 
     this.http.post<any>('http://localhost:8000/api/transformation/convert/', requestBody) // Replace with your API endpoint
       .subscribe(response => {
@@ -65,6 +70,8 @@ export class DataTransformationComponent {
           alert(response.error); // Display error message as alert
         }
       });
+    }
+
   }
 
   // Implement functions for discretization and sampling functionalities here
@@ -73,12 +80,12 @@ export class DataTransformationComponent {
     if(!this.datasetId) alert("please open a dataset ");
     else if(!this.selectedColumn) alert("please select a column")
     else if (this.selectedDiscretization=='') alert(" you should select a dicretization method");
-    for(let label of this.binLabels){
-      if(label==''){
-        alert("you should label your all the bins");
-        break;
-      }
+    else if (this.binLabels.some(label => label === '')) {
+      alert("You should label all the bins");
     }
+    else{
+
+    this.dataTransformed.emit();
   
     const requestBody = {
       dataset_id: this.datasetId, 
@@ -102,6 +109,8 @@ export class DataTransformationComponent {
 
     console.log(this.binLabels);
 
+  }
+
 
   }
   updateBinLabel(index: number, value: string) {
@@ -120,6 +129,8 @@ export class DataTransformationComponent {
 
     else{
 
+      this.dataTransformed.emit();
+
       const requestBody = {
         dataset_id: this.datasetId, 
         target_column: this.selectedColumn,
@@ -130,16 +141,19 @@ export class DataTransformationComponent {
         .subscribe(response => {
           if (response.message) {
             // Success
-            //alert(response.message); // Display success message as alert
+            alert(response.message); // Display success message as alert
             this.dataUpdated.emit();
-          } else if (response.error) {
+          } else {
             // Error
+            alert("error in sampling");
+            console.log(response.error);
             alert(response.error); // Display error message as alert
+            
           }
         });
 
 
-        console.log(requestBody);
+        //console.log(requestBody);
     }
 
   }

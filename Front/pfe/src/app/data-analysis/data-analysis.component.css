@@ -1,0 +1,97 @@
+.data-analysis {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #f2f2f2;
+  }
+  
+  .data-analysis .sub-functionality {
+    cursor: pointer;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 115%;
+  }
+  
+  .data-analysis .sub-functionality:hover {
+    /* color: #5c5a5a; */
+    font-size: 119%;
+  }
+  
+  .data-analysis div {
+    /* display: none; */
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .data-analysis div.show {
+    display: block;
+  }
+  
+  /* Specific styles for each section (optional) */
+  
+  .data-analysis select {
+    width: 150px;
+    margin-right: 10px;
+  }
+  
+  .data-analysis button {
+    background-color: #f17b13; /* Orange color as in image */
+    color: #fff; /* White text color */
+    padding: 5px 10px; /* Add padding for better appearance */
+    border: none; /* Remove default button border */
+    border-radius: 15px; /* Add rounded corners */
+    cursor: pointer; /* Indicate clickable action */
+    width: auto;
+    margin-top: 10px;
+  }
+  
+
+  .stats{
+    /* height: 500px;   */
+    width: 101%;
+    overflow: auto;
+  }
+
+  .stats table {
+    
+    border-collapse: collapse;
+    /* background-color: rgb(5, 5, 5); */
+
+    color: rgb(10, 10, 10);
+ 
+  }
+
+  th,
+  td {
+    padding: 0.5rem;
+    border: 1px solid #736d6d;
+  }
+
+  .stats table th:first-child,
+  .stats table td:first-child {
+    position: sticky; /* Make the first column sticky */
+    left: 0; /* Position it at the left edge */
+    background-color: #eee; /* Optional: Set background color for better visibility */
+    z-index: 1; /* Ensure it stays on top when scrolling horizontally */
+    width: 150px; /* Adjust the width of the first column as needed */
+  }
+
+
+  .data-preview thead{
+    position: sticky;
+    top:0;
+    background-color: #000;
+    
+  }
+
+  img{
+    width: 100%;
+  }
+  .visualizationImage{
+    background-color:#f2f2f2; ;
+  }

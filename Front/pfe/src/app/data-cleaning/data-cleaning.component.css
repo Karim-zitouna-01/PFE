@@ -1,0 +1,52 @@
+.data-cleaning {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #f2f2f2;
+  }
+  
+  .data-cleaning .sub-functionality {
+    cursor: pointer;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 115%;
+  }
+  
+  .data-cleaning .sub-functionality:hover {
+    /* color: #5c5a5a; */
+    font-size: 119%;
+  }
+  
+  .data-cleaning div {
+    /* display: none; */
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .data-cleaning div.show {
+    display: block;
+  }
+  
+  /* Specific styles for each section (optional) */
+  
+  .missing-values-section,
+  .outliers-section {
+    /* Add specific styles for layout alignment */
+  }
+  .data-cleaning button{
+    background-color: #f17b13; /* Orange color as in image */
+    color: #fff; /* White text color */
+    padding: 5px 10px; /* Add padding for better appearance */
+    border: none; /* Remove default button border */
+    border-radius: 15px; /* Add rounded corners */
+    cursor: pointer; /* Indicate clickable action */
+    width: 50%;
+    margin-left: 28%;
+    margin-top: 3%;
+  }
+  

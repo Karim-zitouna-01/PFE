@@ -12,6 +12,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { UserComponent } from './user/user.component';
 import { DataDivisionComponent } from './data-division/data-division.component';
 import { DataTransformationComponent } from './data-transformation/data-transformation.component';
+import { DataCleaningComponent } from './data-cleaning/data-cleaning.component';
+import { DataAnalysisComponent } from './data-analysis/data-analysis.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { DataTransformationComponent } from './data-transformation/data-transfor
     NavComponent,
     UserComponent,
     DataDivisionComponent,
-    DataTransformationComponent
+    DataTransformationComponent,
+    DataCleaningComponent,
+    DataAnalysisComponent
  
   ],
   imports: [

@@ -265,7 +265,7 @@
 
 
   .data-preview h2{
-    margin-left: 40%;
+    margin-left: 20%;
     color: white;
   }
   
@@ -305,6 +305,26 @@
     
   }
 
+
+
+  /********************************undo redo reset********************************/
+  .data-preview-actions{
+    display: flex;
+  }
   
+  .data-preview-actions button {
+    background-color:black; /* Light gray background */
+     /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 5px 10px; /* Inner padding */
+    margin-left: 0;
+    margin-right: 0; /* Margin for spacing */
+    cursor: pointer; /* Indicate clickable behavior */
+  }
+
+  
+  .data-preview button:hover { /* Hover effect */
+    background-color: #d7731a; /* Slightly darker on hover */
+  }
   
 

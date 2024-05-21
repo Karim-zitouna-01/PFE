@@ -16,7 +16,7 @@ interface File {
 export class UserComponent implements OnInit {
   uploadedFile: any;
   uploadedFiles: any[]=[];
-  modules: string[] = ['Data Cleaning', 'Data Transformation', 'Data Visualization', 'Data Division'];
+  modules: string[] = ['Data Cleaning', 'Data Transformation', 'Data Analysis', 'Data Division'];
   selectedModule: string | null = null;
   selectedFile: File | null = null;
   showMore = false;
@@ -30,8 +30,17 @@ export class UserComponent implements OnInit {
   displayedData: any[][] = []
 
   selectedDatasetId = new EventEmitter<number>();
+  
 
   message = '';
+  fileName='';
+
+  undoStack: any[] = []; // Stack to store previous data versions (limited size)
+  redoStack: any[] = []; // Stack to store "undone" data versions (limited size)
+  initialData: any; // Store initial data before any transformations
+  maxUndoSteps = 5; // Maximum number of undo steps allowed
+  data="";
+
 
   constructor(
     private http: HttpClient
@@ -79,6 +88,9 @@ export class UserComponent implements OnInit {
     this.isLoading = true;
     this.fileContent = '';
     this.openedFileId = datasetId;
+
+    // this.undoStack=[];
+    // this.redoStack = [];
     
   
     this.http.get(`http://localhost:8000/api/my-datasets/open/${datasetId}`, { 
@@ -87,6 +99,8 @@ export class UserComponent implements OnInit {
     })
       .subscribe(response => {
         this.processDataAndDisplay(response);
+        this.data=response;
+        this.initialData=response;
       }, error => {
         this.isLoading = false;
         console.error('Error opening file:', error);
@@ -96,7 +110,20 @@ export class UserComponent implements OnInit {
 
   }
   re_openFile(){
-    this.openFile(this.openedFileId);
+    
+    this.http.get(`http://localhost:8000/api/my-datasets/open/${this.openedFileId}`, { 
+      responseType: 'text',
+      withCredentials : true
+    })
+      .subscribe(response => {
+        this.processDataAndDisplay(response);
+        this.data=response;
+        
+      }, error => {
+        this.isLoading = false;
+        console.error('Error opening file:', error);
+        // Handle potential errors (e.g., display error message)
+      });
   }
 
 
@@ -151,6 +178,10 @@ export class UserComponent implements OnInit {
     this.isLoading = false;
     this.fileContent = '';
     this.displayedData=[];
+    this.data="";
+    this.initialData="";
+    // this.undoStack=[];
+    // this.redoStack = [];
   }
 
   confirmDelete(fileId: number) {
@@ -229,6 +260,150 @@ export class UserComponent implements OnInit {
   }
 
 
+
+
+  /*****************undo / redo / save ********************* */
+
+
+  // Function to store data in undo stack
+  storeDataForUndo() {
+    if (this.undoStack.length === this.maxUndoSteps) {
+      this.undoStack.shift(); // Remove oldest version if stack is full
+    }
+    this.undoStack.push(this.data); // Push a copy of the data
+    this.redoStack = []; // Clear redo stack when performing undo
+  }
+
+  // storeDataForUndo(data: any) {
+  //   if (this.undoStack.length === this.maxUndoSteps) {
+  //     this.undoStack.shift(); // Remove oldest version if stack is full
+  //   }
+  //   this.undoStack.push(data.slice()); // Push a copy of the data
+  //   this.redoStack = []; // Clear redo stack when performing undo
+  // }
+
+  undo() {
+    if (this.undoStack.length > 0) {
+      const previousData = this.undoStack.pop();
+      // ... send previousData to back-end using Overwrite API (replace current data)
+      this.redoStack.push(this.data); // Push current data to redo stack
+      
+      //create file to send it:
+       //this.fileName= 'undo_data.csv'; // Define a filename (optional)
+      
+      for(let f of this.uploadedFiles.slice(0, this.uploadedFiles.length )){
+        if(f.id == this.openedFileId){
+          this.fileName=f.file_name;
+        }
+      }
+
+      const file = new File([previousData], this.fileName, { type: 'text/csv' }); // Create File object
+
+      //update dataset: send the previous one to the abck-end
+      let formData = new FormData();
+      formData.append('uploaded_file', file);
+  
+      // call API
+      this.http.post(`http://localhost:8000/api/my-datasets/overwrite/${this.openedFileId}/`, formData, {
+        withCredentials: true
+      }).subscribe((response) => {
+        this.fetchUploadedFiles();
+        this.re_openFile();
+      });
+      
+      
+    } else {
+      alert('No more undo steps available!');
+    }
+  }
+
+  // `http://localhost:8000/api/my-datasets/${fileId}/delete`,{
+
+
+  // undo() {
+  //   if (this.undoStack.length > 0) {
+  //     const previousData = this.undoStack.pop();
+  //     // ... send previousData to back-end using Overwrite API (replace current data)
+  //     this.redoStack.push(this.data.slice()); // Push current data to redo stack
+  //     this.data = previousData; // Update data in component
+  //     // Update visualizations based on the updated data
+  //   } else {
+  //     alert('No more undo steps available!');
+  //   }
+  // }
+
+  redo() {
+    if (this.redoStack.length > 0) {
+      const redoData = this.redoStack.pop();
+      // ... send redoData to back-end using Overwrite API (replace current data)
+      this.undoStack.push(this.data); // Push current data to undo stack
+      for(let f of this.uploadedFiles.slice(0, this.uploadedFiles.length )){
+        if(f.id == this.openedFileId){
+          this.fileName=f.file_name;
+        }
+      }
+
+      const file = new File([redoData], this.fileName, { type: 'text/csv' }); // Create File object
+
+      //update dataset: send the previous one to the abck-end
+      let formData = new FormData();
+      formData.append('uploaded_file', file);
+  
+      // call API
+      this.http.post(`http://localhost:8000/api/my-datasets/overwrite/${this.openedFileId}/`, formData, {
+        withCredentials: true
+      }).subscribe((response) => {
+        this.fetchUploadedFiles();
+        this.re_openFile();
+      });
+    } else {
+      alert('No more redo steps available!');
+    }
+  }
+
+
+
+  // redo() {
+  //   if (this.redoStack.length > 0) {
+  //     const redoData = this.redoStack.pop();
+  //     // ... send redoData to back-end using Overwrite API (replace current data)
+  //     this.undoStack.push(this.data.slice()); // Push current data to undo stack
+  //     this.data = redoData; // Update data in component
+  //     // Update visualizations based on the updated data
+  //   } else {
+  //     alert('No more redo steps available!');
+  //   }
+  // }
+
+
+  resetData() {
+    
+
+    for(let f of this.uploadedFiles.slice(0, this.uploadedFiles.length )){
+      if(f.id == this.openedFileId){
+        this.fileName=f.file_name;
+      }
+    }
+    console.log(this.initialData);
+
+    const file = new File([this.initialData], this.fileName, { type: 'text/csv' }); // Create File object
+
+    //update dataset: send the previous one to the abck-end
+    let formData = new FormData();
+    formData.append('uploaded_file', file);
+
+    // call API
+    this.http.post(`http://localhost:8000/api/my-datasets/overwrite/${this.openedFileId}/`, formData, {
+      withCredentials: true
+    }).subscribe((response) => {
+      this.fetchUploadedFiles();
+      this.re_openFile();
+    });
+
+
+    this.undoStack = [];
+    this.redoStack = [];
+  }
 
   
 
