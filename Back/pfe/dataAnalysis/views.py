@@ -91,7 +91,8 @@ class DistributionNumericView(APIView):
       return Response({'error': f"Column '{column_name}' is not numeric."}, status=400)
 
     try:
-        plt.figure(figsize=(8, 6))
+        #plt.rcParams['axes.facecolor'] = 'black'
+        plt.figure(figsize=(8.4, 4.7), facecolor='#f2f2f2') #use facecolor='white'to change back-ground color of the image
         df[column_name].plot(kind='box')
         plt.title(f"Distribution of {column_name}")
         plt.xlabel(column_name)
@@ -135,14 +136,18 @@ class DistributionCategoricalView(APIView):
       return Response({'error': f"Invalid chart type: {chart_type}"}, status=400)
 
     try:
-        plt.figure(figsize=(8, 6))
+
         if chart_type == 'bar':
+            #plt.rcParams['axes.facecolor'] = 'black'
+            plt.figure(figsize=(8.45, 4.42), facecolor='#f2f2f2') #use facecolor='white'to change back-ground color of the image            
             df[column_name].value_counts().plot(kind='bar')
         elif chart_type == 'pie':
+            #plt.rcParams['axes.facecolor'] = 'black'
+            plt.figure(figsize=(8.4, 4.7), facecolor='#f2f2f2') #use facecolor='white'to change back-ground color of the image        
             df[column_name].value_counts().plot(kind='pie')
         plt.title(f"Distribution of {column_name}")
         plt.xlabel(column_name)
-        plt.ylabel('Count')
+        plt.ylabel(' ')
         plt.grid(True)
         # Create a HttpResponse object with the appropriate content type
         response = HttpResponse(content_type="image/png")
@@ -180,9 +185,10 @@ class RelationshipView(APIView):
 
 
     try:
-        plt.figure(figsize=(8, 6))
+        #plt.rcParams['axes.facecolor'] = 'black'
+        plt.figure(figsize=(8.4, 4.18), facecolor='#f2f2f2') #use facecolor='white'to change back-ground color of the image
         plt.scatter(df[feature1], df[feature2])
-        plt.title(f"Relationship between {feature1} and {feature2}")
+        plt.title(f"Correlation between {feature1} and {feature2}")
         plt.xlabel(feature1)
         plt.ylabel(feature2)
         plt.grid(True)

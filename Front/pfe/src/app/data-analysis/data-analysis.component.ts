@@ -28,8 +28,7 @@ export class DataAnalysisComponent {
   @Input()
   datasetId: number | undefined;  //receive the dataset id from the user component.
 
-  @Output() visualizedImage = new EventEmitter<string>(); // Emit event when visualization is requested
-
+  @Output() visualizationImageReady = new EventEmitter<string>();
   selectedAnalysis: string = ''; // Initial value is empty string
   selectedOption: string = ''; // 'all' or 'column'
   selectedVisType: string = ''; // 'numeric', 'categorical', or 'relationship'
@@ -154,7 +153,7 @@ getVisualization() {
     // Create a URL for the image and set it as the source of the <img> element
     const url = URL.createObjectURL(response);
     this.visualizationImage = url;
-    this.visualizedImage.emit(url);
+    this.visualizationImageReady.emit(this.visualizationImage);
   });
 }
 

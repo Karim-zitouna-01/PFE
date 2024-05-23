@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { Emitters } from '../emitters/emitters';
 
 interface File {
@@ -40,6 +40,8 @@ export class UserComponent implements OnInit {
   initialData: any; // Store initial data before any transformations
   maxUndoSteps = 5; // Maximum number of undo steps allowed
   data="";
+
+visualizationImage: string='';
 
 
   constructor(
@@ -405,6 +407,12 @@ export class UserComponent implements OnInit {
     this.redoStack = [];
   }
 
+
+
+
+  onImageUrlChange(imageUrl: string) {
+    this.visualizationImage = imageUrl;
+  }
   
 
   /********************************** */

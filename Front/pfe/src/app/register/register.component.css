@@ -6,6 +6,25 @@
     margin: 0;
     padding: 0;
   }
+
+
+  .app-title {
+    position: absolute; /* Make the title absolutely positioned */
+    top: 2; /* Position it at the top edge of the screen */
+    right: 2cm; /* Position it at the right edge of the screen */
+    /* (Optional) Adjust other styles like font-size, margin, padding */
+    z-index: 1;
+    width: 8%;
+  }
+  
+  .sub-title {
+    position: absolute; /* Make the title absolutely positioned */
+    top: 4.9cm; /* Position it at the top edge of the screen */
+    right: 1.4cm; /* Position it at the right edge of the screen */
+    /* (Optional) Adjust other styles like font-size, margin, padding */
+    z-index: 1;
+    color: white;
+  }
   
   .left-side,
   .right-side {
@@ -20,7 +39,7 @@
   }
   
   .left-side img {
-    width: 60%; /* Scale image to fit the left side */
+    width: 80%; /* Scale image to fit the left side */
     height: auto; /* Maintain image aspect ratio */
     margin: 0;
   }

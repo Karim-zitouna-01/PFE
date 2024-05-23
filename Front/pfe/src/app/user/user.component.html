@@ -100,12 +100,14 @@
                 <th *ngFor="let header of displayedData[0]" [ngClass]="{ 'selected-column': selectedColumn === header }">{{ header }}</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="!visualizationImage">
               <tr *ngFor="let row of displayedData.slice(1)">
                 <td *ngFor="let cell of row">{{ cell }}</td>
               </tr>
             </tbody>
+            
           </table>
+          <img *ngIf="visualizationImage" [src]="visualizationImage" alt="Data Visualization">
 
         </div>
         <button class="download-button" *ngIf="openedFileId" (click)="downloadFile()">Download Data</button>
@@ -130,8 +132,9 @@
         </div>
 
         <div class="content">
-          <app-data-analysis *ngIf="selectedModule === 'Data Analysis'" [datasetId]="openedFileId"  [selectedColumn]='selectedColumn'></app-data-analysis>
+          <app-data-analysis   *ngIf="selectedModule === 'Data Analysis'" (visualizationImageReady)="onImageUrlChange($event)" [datasetId]="openedFileId"  [selectedColumn]='selectedColumn'></app-data-analysis>
         </div>
     </div>
   </div>
+  
   

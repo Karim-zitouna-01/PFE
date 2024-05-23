@@ -21,13 +21,13 @@ body {
   right: 2cm; /* Position it at the right edge of the screen */
   /* (Optional) Adjust other styles like font-size, margin, padding */
   z-index: 1;
-  color: white;
+  width: 8%;
 }
 
 .sub-title {
   position: absolute; /* Make the title absolutely positioned */
-  top: 3.3cm; /* Position it at the top edge of the screen */
-  right: 1.7cm; /* Position it at the right edge of the screen */
+  top: 4.9cm; /* Position it at the top edge of the screen */
+  right: 1.4cm; /* Position it at the right edge of the screen */
   /* (Optional) Adjust other styles like font-size, margin, padding */
   z-index: 1;
   color: white;
