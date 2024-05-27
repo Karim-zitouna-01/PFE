@@ -23,7 +23,7 @@ export class DataTransformationComponent {
   selectedDiscretization:string='';
   selectedSampling: string='';
   binLabels:any[]=[];
-  numBins: number=0;
+  numBins: number=1;
   trackByFn() {}
   selectedSamplingMethod='';
   selectedSamplingAlgorithm='';
@@ -80,6 +80,7 @@ export class DataTransformationComponent {
     if(!this.datasetId) alert("please open a dataset ");
     else if(!this.selectedColumn) alert("please select a column")
     else if (this.selectedDiscretization=='') alert(" you should select a dicretization method");
+    else if(this.numBins==0) alert("number of labels should be greater than 1");
     else if (this.binLabels.some(label => label === '')) {
       alert("You should label all the bins");
     }

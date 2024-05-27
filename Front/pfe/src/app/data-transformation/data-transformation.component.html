@@ -1,7 +1,7 @@
 <div class="data-transformation">
   <!-- <h3>Data Transformation</h3> -->
 
-  <span class="sub-functionality" *ngIf="selectedTransformation === '' || selectedTransformation === 'conversion'" (click)="toggleFunctionality('conversion')">Conversion</span>
+  <span class="sub-functionality"  (click)="toggleFunctionality('conversion')">Conversion</span>
   <div *ngIf="selectedTransformation === 'conversion'">
     <div class="conversion-section">
       <span>Selected Column: <b>{{ selectedColumn }}</b></span>
@@ -17,7 +17,7 @@
   </div>
 
   
-    <span class="sub-functionality" *ngIf="selectedTransformation === '' || selectedTransformation === 'discretization'" (click)="toggleFunctionality('discretization')">Discretization</span>
+    <span class="sub-functionality"  (click)="toggleFunctionality('discretization')">Discretization</span>
     <div class="discretization-section" *ngIf="selectedTransformation === 'discretization'">
       <span>Discretization Method:</span>
       <select [(ngModel)]="selectedDiscretization">
@@ -28,7 +28,7 @@
       <span>Selected Column: <b>{{ selectedColumn }}</b></span>
       
       <span>Number of Bins:
-        <input type="number" [(ngModel)]="numBins" (change)="updateBinLabels()">
+        <input type="number" min="1" [(ngModel)]="numBins" (change)="updateBinLabels()">
       </span>
       
       <div >
@@ -77,7 +77,7 @@
   </div>
 </div> -->
 
- <span class="sub-functionality" *ngIf="selectedTransformation === '' || selectedTransformation === 'sampling'" (click)="toggleFunctionality('sampling')">Sampling</span>
+ <span class="sub-functionality"  (click)="toggleFunctionality('sampling')">Sampling</span>
  <div *ngIf="selectedTransformation === 'sampling'" >
   <span>Sampling Method:</span>
   <select [(ngModel)]="selectedSamplingMethod">

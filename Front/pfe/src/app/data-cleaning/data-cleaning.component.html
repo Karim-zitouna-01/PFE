@@ -1,5 +1,5 @@
 <div class="data-cleaning">
-    <span class="sub-functionality" *ngIf="selectedCleaning === '' || selectedCleaning === 'missing-values'" (click)="toggleFunctionality('missing-values')">Impute Missing Values</span>
+    <span class="sub-functionality"  (click)="toggleFunctionality('missing-values')">Impute Missing Values</span>
     <div *ngIf="selectedCleaning === 'missing-values'">
       <div class="missing-values-section">
         <span>Selected Column: <b>{{ selectedColumn }}</b></span>
@@ -16,7 +16,7 @@
       </div>
     </div>
   
-    <span class="sub-functionality" *ngIf="selectedCleaning === '' || selectedCleaning === 'outliers'" (click)="toggleFunctionality('outliers')">Handle Outliers</span>
+    <span class="sub-functionality"  (click)="toggleFunctionality('outliers')">Handle Outliers</span>
     <div class="outliers-section" *ngIf="selectedCleaning === 'outliers'">
         <span>Selected Column: <b>{{ selectedColumn }}</b></span>
       <span>Outlier Handling Method:</span>
