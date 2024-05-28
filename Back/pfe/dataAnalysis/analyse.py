@@ -46,7 +46,7 @@ def get_column_stats(df, column_name):
     "median": round(df[column_name].median(), 2) if df[column_name].dtype != 'object' else None,
     "max": df[column_name].max() if df[column_name].dtype != 'object' else None,
     "min": df[column_name].min() if df[column_name].dtype != 'object' else None,
-    "mode": df[column_name].mode().iloc[0] if df[column_name].dtype != 'object' else None,
+    "mode": df[column_name].mode().iloc[0],
     "n_missing": df[column_name].isnull().sum()
   }
   return {column_name:stats}

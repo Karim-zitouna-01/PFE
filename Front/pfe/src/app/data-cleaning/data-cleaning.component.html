@@ -25,10 +25,10 @@
         <option value="log">Log Transform</option>
         <option value="sqrt">Square Root Transform</option>
       </select>
-      <div *ngIf="selectedOutlierMethod === 'remove'">
+      <!-- <div *ngIf="selectedOutlierMethod === 'remove'">
         <span>Threshold (optional):</span>
         <input type="number" [(ngModel)]="outlierThreshold">
-      </div>
+      </div> -->
       <button class="handle-outliers-button" (click)="handleOutliers()">Handle</button>
     </div>
   </div>

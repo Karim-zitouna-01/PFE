@@ -45,17 +45,16 @@ export class DataCleaningComponent {
         imputation_method: this.selectedImputationMethod
       };
 
-      this.http.post<any>('http://localhost:8000/api/cleaning/impute/', requestBody) // Replace with your API endpoint
-        .subscribe(response => {
-          if (response.message) {
-            // Success
-            //alert(response.message); // Display success message as alert
-            this.dataUpdated.emit();
-          } else if (response.error) {
-            // Error
-            alert(response.error); // Display error message as alert
-          }
-        });
+      this.http.post<any>('http://localhost:8000/api/cleaning/impute/', requestBody)
+      .subscribe(response => {
+        // Handle successful response
+        this.dataUpdated.emit();
+      },
+      (error) => {
+        // Handle errors
+        console.error('Error imputing missing values:', error);
+        alert('An error occurred during missing value imputation.'); // User-friendly error message
+      });
     }
   }
 
@@ -77,17 +76,16 @@ export class DataCleaningComponent {
       //   requestBody['threshold'] = this.outlierThreshold;
       // }
 
-      this.http.post<any>('http://localhost:8000/api/cleaning/handle-outliers/', requestBody) // Replace with your API endpoint
-        .subscribe(response => {
-          if (response.message) {
-            // Success
-            //alert(response.message); // Display success message as alert
-            this.dataUpdated.emit();
-          } else if (response.error) {
-            // Error
-            alert(response.error); // Display error message as alert
-          }
-        });
+      this.http.post<any>('http://localhost:8000/api/cleaning/handle-outliers/', requestBody)
+      .subscribe(response => {
+        // Handle successful response
+        this.dataUpdated.emit();
+      },
+      (error) => {
+        // Handle errors
+        console.error('Error handling outliers:', error);
+        alert('An error occurred during outlier handling .'); // User-friendly error message
+      });
     }
   }
 }

@@ -4,6 +4,7 @@ from imblearn.under_sampling import RandomUnderSampler, NearMiss, ClusterCentroi
 
 from sklearn.preprocessing import LabelEncoder
 from collections import Counter, defaultdict
+import re
 
 def convert_column(dataset_path, column_name, target_type):
   """
@@ -19,7 +20,14 @@ def convert_column(dataset_path, column_name, target_type):
   """
   df = pd.read_csv(dataset_path)
   try:
-    df[column_name] = df[column_name].astype(target_type)
+    # Extract the numeric part of each value in the column using a regular expression
+    df[column_name] = df[column_name].apply(lambda x: re.sub(r'[^\d\.]+', '', str(x)))
+
+    #when using this, the missing values will be replaced with zeroes
+    #df[column_name] = df[column_name].fillna(0).apply(lambda x: re.sub(r'[^\d\.]+', '', str(x)))
+
+    # Convert column to target data type and handle potential conversion errors
+    df[column_name] = pd.to_numeric(df[column_name], errors='coerce').astype(target_type)
   except ValueError:
     # Handle potential conversion errors (e.g., invalid data format)
     raise ValueError(f"Error converting column '{column_name}' to type '{target_type}'")

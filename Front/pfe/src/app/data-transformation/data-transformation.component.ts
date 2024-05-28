@@ -52,23 +52,20 @@ export class DataTransformationComponent {
     {
       this.dataTransformed.emit();
 
-    const requestBody = {
-      dataset_id: this.datasetId, 
-      column_name: this.selectedColumn,
-      target_type: this.selectedConversionType
-    };
-    
+      const requestBody = {
+        dataset_id: this.datasetId, 
+        column_name: this.selectedColumn,
+        target_type: this.selectedConversionType
+      };
+      
 
-    this.http.post<any>('http://localhost:8000/api/transformation/convert/', requestBody) // Replace with your API endpoint
+      this.http.post<any>('http://localhost:8000/api/transformation/convert/', requestBody)
       .subscribe(response => {
-        if (response.message) {
-          // Success
-          //alert(response.message); // Display success message as alert
-          this.dataUpdated.emit();
-        } else if (response.error) {
-          // Error
-          alert(response.error); // Display error message as alert
-        }
+        // Handle successful response
+        this.dataUpdated.emit();
+      },
+      (error) => {
+        alert(error.error.error); // User-friendly error message
       });
     }
 
@@ -96,16 +93,15 @@ export class DataTransformationComponent {
       strategy: this.selectedDiscretization === 'equal-width' ? 'cut' : 'qcut'
       };
 
-    this.http.post<any>('http://localhost:8000/api/transformation/discretize/', requestBody) // Replace with your API endpoint
+      this.http.post<any>('http://localhost:8000/api/transformation/discretize/', requestBody)
       .subscribe(response => {
-        if (response.message) {
-          // Success
-          //alert(response.message); // Display success message as alert
-          this.dataUpdated.emit();
-        } else if (response.error) {
-          // Error
-          alert(response.error); // Display error message as alert
-        }
+        // Handle successful response
+        this.dataUpdated.emit();
+      },
+      (error) => {
+        // Handle errors
+        //console.error('Error discretizing data:', error);
+        alert("Error in discretization data: "+error.error.error); // User-friendly error message
       });
 
     console.log(this.binLabels);
@@ -125,7 +121,7 @@ export class DataTransformationComponent {
   sampleData(){
     if(!this.datasetId) alert("please open a dataset ");
     else if(!this.selectedColumn) alert("please select a column");
-    else if(!this.selectedSamplingMethod) alert("please a sampling method");
+    else if(!this.selectedSamplingMethod) alert("please select a sampling method");
     else if(!this.selectedSamplingAlgorithm) alert("No sampling algorithm choosen!");
 
     else{
@@ -138,19 +134,15 @@ export class DataTransformationComponent {
         sampling_method: this.selectedSamplingAlgorithm
         };
   
-      this.http.post<any>('http://localhost:8000/api/transformation/sample/', requestBody) // Replace with your API endpoint
+        this.http.post<any>('http://localhost:8000/api/transformation/sample/', requestBody)
         .subscribe(response => {
-          if (response.message) {
-            // Success
-            alert(response.message); // Display success message as alert
-            this.dataUpdated.emit();
-          } else {
-            // Error
-            alert("error in sampling");
-            console.log(response.error);
-            alert(response.error); // Display error message as alert
-            
-          }
+          // Handle successful response
+          this.dataUpdated.emit();
+        },
+        (error) => {
+          // Handle errors
+          console.error('Error sampling data:', error);
+          alert(error.error.error); // User-friendly error message
         });
 
 
