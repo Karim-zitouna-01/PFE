@@ -62,6 +62,7 @@ export class DataTransformationComponent {
       this.http.post<any>('http://localhost:8000/api/transformation/convert/', requestBody)
       .subscribe(response => {
         // Handle successful response
+        alert("conversion succefully done");
         this.dataUpdated.emit();
       },
       (error) => {
@@ -71,7 +72,7 @@ export class DataTransformationComponent {
 
   }
 
-  // Implement functions for discretization and sampling functionalities here
+ 
 
   discretizeData(){
     if(!this.datasetId) alert("please open a dataset ");
@@ -96,6 +97,7 @@ export class DataTransformationComponent {
       this.http.post<any>('http://localhost:8000/api/transformation/discretize/', requestBody)
       .subscribe(response => {
         // Handle successful response
+        alert("Data descritized successfully ");
         this.dataUpdated.emit();
       },
       (error) => {
@@ -137,6 +139,7 @@ export class DataTransformationComponent {
         this.http.post<any>('http://localhost:8000/api/transformation/sample/', requestBody)
         .subscribe(response => {
           // Handle successful response
+          alert("Data Sampling successfully done!");
           this.dataUpdated.emit();
         },
         (error) => {

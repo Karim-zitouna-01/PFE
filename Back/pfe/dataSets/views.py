@@ -138,13 +138,13 @@ class DatasetOpenView(APIView):
             if not token:
                 raise AuthenticationFailed('Unauthenticated!')
             payload = jwt.decode(token, 'secret', algorithms=['HS256'])
-            user = User.objects.get(pk=payload['id'])  # Assuming 'id' is the primary key field
+            user = User.objects.get(pk=payload['id'])  
             self.request.user = user
             try:
                 dataset = Dataset.objects.get(pk=pk, owner=request.user)  # Filter by owner
 
                 # Check if file exists
-                file_path = dataset.uploaded_file.path  # Assuming 'file' is the field storing the file path
+                file_path = dataset.uploaded_file.path  
                 if not os.path.exists(file_path):
                     return Response({'error': 'File not found'}, status=status.HTTP_404_NOT_FOUND)
 
@@ -186,13 +186,13 @@ class CloseFileView(APIView):
             if not token:
                 raise AuthenticationFailed('Unauthenticated!')
             payload = jwt.decode(token, 'secret', algorithms=['HS256'])
-            user = User.objects.get(pk=payload['id'])  # Assuming 'id' is the primary key field
+            user = User.objects.get(pk=payload['id'])  
             self.request.user = user
             try:
                 dataset = Dataset.objects.get(pk=pk, owner=request.user)  # Filter by owner
 
                 # Check if file exists
-                file_path = dataset.uploaded_file.path  # Assuming 'file' is the field storing the file path
+                file_path = dataset.uploaded_file.path  
                 if not os.path.exists(file_path):
                     return Response({'error': 'File not found'}, status=status.HTTP_404_NOT_FOUND)
 

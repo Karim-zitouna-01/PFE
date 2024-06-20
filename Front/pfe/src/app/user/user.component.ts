@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { Emitters } from '../emitters/emitters';
+import { Router } from '@angular/router';
 
 interface File {
   name: string;
@@ -21,7 +22,7 @@ export class UserComponent implements OnInit {
   selectedFile: File | null = null;
   showMore = false;
 
-  openedFileId!: number; // Optional for client-side tracking
+  openedFileId!: number; //  for client-side tracking
   isLoading = false;
   fileContent = '';
   selectedColumn: string = '';
@@ -45,13 +46,14 @@ visualizationImage: string='';
 
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {
     this.uploadedFiles=[];
   }
 
   ngOnInit(): void {
-    // Fetch uploaded files from Django API (replace with your actual logic)
+    // Fetch uploaded files from Django API 
     //this.fetchUploadedFiles();
     this.http.get('http://localhost:8000/api/user', {
       withCredentials: true}).subscribe(
@@ -62,6 +64,8 @@ visualizationImage: string='';
       err => {
         this.message = 'You are not logged in';
         Emitters.authEmitter.emit(false);
+        this.router.navigate(['/login']);
+        
       }
     );
     this.fetchUploadedFiles();
@@ -173,8 +177,8 @@ visualizationImage: string='';
   
 
   closeFile(datasetId: number) {
-    // Implement logic to close the file on the backend (if needed)
-    // ... (e.g., call a close endpoint)
+
+    if (confirm('All changes will be saved and cannot be undone ! are you sure you want to close the file ')){
   
     this.openedFileId = 0; // Update client-side state
     this.isLoading = false;
@@ -182,8 +186,10 @@ visualizationImage: string='';
     this.displayedData=[];
     this.data="";
     this.initialData="";
-    // this.undoStack=[];
-    // this.redoStack = [];
+    this.undoStack=[];
+    this.redoStack = [];
+  }
+
   }
 
   confirmDelete(fileId: number) {
@@ -215,8 +221,7 @@ visualizationImage: string='';
 
   selectModule(module: string) {
     this.selectedModule = module;
-    // Implement logic to display functions associated with the selected module
-    // (might involve API calls for specific functions)
+   
   }
 
   
@@ -287,7 +292,7 @@ visualizationImage: string='';
   undo() {
     if (this.undoStack.length > 0) {
       const previousData = this.undoStack.pop();
-      // ... send previousData to back-end using Overwrite API (replace current data)
+      // ... send previousData to back-end using Overwrite API 
       this.redoStack.push(this.data); // Push current data to redo stack
       
       //create file to send it:

@@ -27,14 +27,14 @@ export class DataCleaningComponent {
   toggleFunctionality(functionality: string) {
     this.selectedCleaning = this.selectedCleaning === functionality ? '' : functionality;
     console.log(this.selectedCleaning);
-    // Update selectedColumn based on selectedColumnId (implementation needed)
+    // Update selectedColumn based on selectedColumnId 
     this.selectedColumn = ''; // Replace with logic to get column name based on ID
     console.log(this.selectedColumn);
   }
 
   imputeMissingValues() {
     if (!this.datasetId) alert("Please open a dataset");
-    else if (!this.selectedColumn) alert("Please select a column");
+    else if (!this.selectedColumn && this.selectedImputationMethod != 'Global_KNN_impute') alert("Please select a column");
     else if (!this.selectedImputationMethod) alert("Please choose an imputation method");
     else {
       this.dataTransformed.emit();
@@ -48,6 +48,7 @@ export class DataCleaningComponent {
       this.http.post<any>('http://localhost:8000/api/cleaning/impute/', requestBody)
       .subscribe(response => {
         // Handle successful response
+        alert("Missing values imputation successfully done!");
         this.dataUpdated.emit();
       },
       (error) => {
@@ -79,6 +80,7 @@ export class DataCleaningComponent {
       this.http.post<any>('http://localhost:8000/api/cleaning/handle-outliers/', requestBody)
       .subscribe(response => {
         // Handle successful response
+        alert("outliers handled successfully");
         this.dataUpdated.emit();
       },
       (error) => {

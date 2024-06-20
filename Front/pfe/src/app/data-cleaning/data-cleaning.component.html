@@ -2,7 +2,7 @@
     <span class="sub-functionality"  (click)="toggleFunctionality('missing-values')">Impute Missing Values</span>
     <div *ngIf="selectedCleaning === 'missing-values'">
       <div class="missing-values-section">
-        <span>Selected Column: <b>{{ selectedColumn }}</b></span>
+        
         <span class="imputation-method">Imputation Method:
           <select [(ngModel)]="selectedImputationMethod">
             <option value="mean">Mean</option>
@@ -12,6 +12,7 @@
             <option value="Global_KNN_impute">Global_KNN_impute</option>
           </select>
         </span>
+        <span *ngIf="selectedImputationMethod != 'Global_KNN_impute'">Selected Column: <b>{{ selectedColumn }}</b></span>
         <button class="impute-button" (click)="imputeMissingValues()">Impute</button>
       </div>
     </div>

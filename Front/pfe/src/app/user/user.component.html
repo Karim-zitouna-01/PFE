@@ -107,7 +107,7 @@
             </tbody>
             
           </table>
-          <img *ngIf="visualizationImage && selectedModule === 'Data Analysis'" [src]="visualizationImage" alt="Data Visualization">
+          <img *ngIf="visualizationImage && selectedModule === 'Data Analysis' && openedFileId" [src]="visualizationImage" alt="Data Visualization">
 
         </div>
         <button class="download-button" *ngIf="openedFileId" (click)="downloadFile()">Download Data</button>

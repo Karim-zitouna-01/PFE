@@ -14,7 +14,7 @@ from dataSets.models import Dataset
 from dataTransformation.convert import convert_column, discretize_column, sample_data
 
 class ConvertView(APIView):
-  # ... (Optional: Add authentication/permission classes if needed)
+  
 
   def post(self, request):
     dataset_id = request.data.get('dataset_id')
@@ -27,7 +27,7 @@ class ConvertView(APIView):
     # Logic to access and open the dataset based on dataset_id
     try:
       dataset = Dataset.objects.get(pk=dataset_id)
-      dataset_path = dataset.uploaded_file.path  # Assuming 'uploaded_file' field
+      dataset_path = dataset.uploaded_file.path  
     except Dataset.DoesNotExist:
       return Response({'error': 'Dataset not found'}, status=status.HTTP_404_NOT_FOUND)
 
@@ -35,19 +35,18 @@ class ConvertView(APIView):
       df = convert_column(dataset_path, column_name, target_type)
       # Logic to save the modified DataFrame back to the dataset
 
-      # Option 1: Save the modified data back to the same file (consider backup)
+      #  Save the modified data back to the same file (consider backup)
       df.to_csv(dataset_path, index=False)  # Overwrites existing file
       return Response({'message': 'Column conversion successful'})
 
-      # Option 2: Create a new dataset with the modified data (recommended)
-      # ... (Implement logic to create a new dataset and update references)
+
 
     except ValueError as e:
       return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class DiscretizeView(APIView):
-  # ... (Optional: Add authentication/permission classes if needed)
+  
 
   def post(self, request):
     dataset_id = request.data.get('dataset_id')
@@ -74,12 +73,11 @@ class DiscretizeView(APIView):
       df = discretize_column(dataset_path, column_name, bins, names, strategy)
       # Logic to save the modified DataFrame back to the dataset
 
-      # Option 1 (commented out): Overwrites the existing dataset file (consider backup)
+      #  : Overwrites the existing dataset file (consider backup)
       df.to_csv(dataset_path, index=False)  # Overwrites existing file
       return Response({'message': 'Column discretized successfully'})
 
-      # Option 2 (commented out): Create a new dataset with the modified data (recommended)
-      # ... (Implement logic to create a new dataset and update references)
+
 
     except ValueError as e:
       return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
@@ -90,7 +88,7 @@ class DiscretizeView(APIView):
 
 
 class SampleView(APIView):
-  # ... (Optional: Add authentication/permission classes if needed)
+  
 
   def post(self, request):
     dataset_id = request.data.get('dataset_id')
@@ -109,7 +107,7 @@ class SampleView(APIView):
     # Logic to access and open the dataset based on dataset_id
     try:
       dataset = Dataset.objects.get(pk=dataset_id)
-      dataset_path = dataset.uploaded_file.path  # Assuming 'uploaded_file' field
+      dataset_path = dataset.uploaded_file.path  
     except Dataset.DoesNotExist:
       return Response({'error': 'Dataset not found'}, status=status.HTTP_404_NOT_FOUND)
 
@@ -120,12 +118,11 @@ class SampleView(APIView):
                        )
       # Logic to save the modified DataFrame back to the dataset
 
-      # Option 1 (commented out): Overwrites the existing dataset file (consider backup)
+      # : Overwrites the existing dataset file (consider backup)
       df.to_csv(dataset_path, index=False)  # Overwrites existing file
       return Response({'message': 'Data sampled successfully'})
 
-      # Option 2 (commented out): Create a new dataset with the sampled data (recommended)
-      # ... (Implement logic to create a new dataset and update references)
+
 
     except ValueError as e:
       return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)

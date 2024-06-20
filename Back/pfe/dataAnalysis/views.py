@@ -4,7 +4,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from dataAnalysis.analyse import get_descriptive_stats, get_column_stats, plot_distribution_categorical, plot_distribution_numeric, plot_relationship
-from dataSets.models import Dataset  # Assuming you have a Dataset model
+from dataSets.models import Dataset  
 import pandas as pd
 from io import BytesIO
 import matplotlib.pyplot as plt
@@ -22,7 +22,7 @@ class DescriptiveStatsView(APIView):
 
     try:
       dataset = Dataset.objects.get(pk=dataset_id)
-      dataset_path = dataset.uploaded_file.path  # Assuming 'uploaded_file' field
+      dataset_path = dataset.uploaded_file.path  
     except Dataset.DoesNotExist:
       return Response({'error': 'Dataset not found'}, status=404)
 
@@ -50,7 +50,7 @@ class ColumnStatsView(APIView):
 
     try:
       dataset = Dataset.objects.get(pk=dataset_id)
-      dataset_path = dataset.uploaded_file.path  # Assuming 'uploaded_file' field
+      dataset_path = dataset.uploaded_file.path  
     except Dataset.DoesNotExist:
       return Response({'error': 'Dataset not found'}, status=404)
 
@@ -69,7 +69,7 @@ class DistributionNumericView(APIView):
   API view to get the distribution of a numeric feature (box plot).
   """
   def get(self, request, format=None):
-    # ... (similar error handling and dataset retrieval from previous views)
+    # (similar error handling and dataset retrieval from previous views)
     dataset_id = request.GET.get('dataset_id')
     column_name=request.GET.get('column_name')
 
@@ -81,7 +81,7 @@ class DistributionNumericView(APIView):
 
     try:
       dataset = Dataset.objects.get(pk=dataset_id)
-      dataset_path = dataset.uploaded_file.path  # Assuming 'uploaded_file' field
+      dataset_path = dataset.uploaded_file.path  
     except Dataset.DoesNotExist:
       return Response({'error': 'Dataset not found'}, status=404)
     
@@ -111,7 +111,7 @@ class DistributionCategoricalView(APIView):
   API view to get the distribution of a categorical feature (bar or pie chart).
   """
   def get(self, request, format=None):
-    # ... (similar error handling and dataset retrieval from previous views)
+    # (similar error handling and dataset retrieval from previous views)
     
     dataset_id = request.GET.get('dataset_id')
     column_name=request.GET.get('column_name')
@@ -126,7 +126,7 @@ class DistributionCategoricalView(APIView):
 
     try:
       dataset = Dataset.objects.get(pk=dataset_id)
-      dataset_path = dataset.uploaded_file.path  # Assuming 'uploaded_file' field
+      dataset_path = dataset.uploaded_file.path  
     except Dataset.DoesNotExist:
       return Response({'error': 'Dataset not found'}, status=404)
     
@@ -162,7 +162,7 @@ class RelationshipView(APIView):
   API view to get the relationship between two features (scatter plot).
   """
   def get(self, request, format=None):
-    # ... (similar error handling and dataset retrieval from previous views)
+    #(similar error handling and dataset retrieval from previous views)
 
     dataset_id = request.GET.get('dataset_id')
     feature1=request.GET.get('feature1')
@@ -177,7 +177,7 @@ class RelationshipView(APIView):
 
     try:
       dataset = Dataset.objects.get(pk=dataset_id)
-      dataset_path = dataset.uploaded_file.path  # Assuming 'uploaded_file' field
+      dataset_path = dataset.uploaded_file.path  
     except Dataset.DoesNotExist:
       return Response({'error': 'Dataset not found'}, status=404)
     

@@ -20,16 +20,16 @@ def convert_column(dataset_path, column_name, target_type):
   """
   df = pd.read_csv(dataset_path)
   try:
-    # Extract the numeric part of each value in the column using a regular expression
-    df[column_name] = df[column_name].apply(lambda x: re.sub(r'[^\d\.]+', '', str(x)))
+        # Only convert strings to numeric types if the target type is not string and the string starts with a numerical value
+    if target_type not in ["string", "str"] and df[column_name].dtype == "object":
+      df[column_name] = df[column_name].apply(lambda x: re.sub(r'[^\d\.]+', '', str(x)))
+      df[column_name] = pd.to_numeric(df[column_name], errors='coerce').astype(target_type)
 
-    #when using this, the missing values will be replaced with zeroes
-    #df[column_name] = df[column_name].fillna(0).apply(lambda x: re.sub(r'[^\d\.]+', '', str(x)))
-
-    # Convert column to target data type and handle potential conversion errors
-    df[column_name] = pd.to_numeric(df[column_name], errors='coerce').astype(target_type)
+        # Convert column to target data type and handle potential conversion errors
+    else:
+      df[column_name] = df[column_name].astype(target_type)
   except ValueError:
-    # Handle potential conversion errors (e.g., invalid data format)
+        # Handle potential conversion errors (e.g., invalid data format)
     raise ValueError(f"Error converting column '{column_name}' to type '{target_type}'")
   return df
 

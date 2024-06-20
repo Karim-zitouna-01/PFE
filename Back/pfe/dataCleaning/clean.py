@@ -48,22 +48,22 @@ def impute_missing_values(dataset_path, column_name, imputation_method):
   elif imputation_method == 'Global_KNN_impute':
     # Impute missing values in the chosen column
 
-    # Loop over columns to encode (optional)
+    # Loop over columns to encode 
     ordinal_enc_dict = {}
     for col_name in df:
-        # Create ordinal encoder for the column (optional)
+        # Create ordinal encoder for the column 
         ordinal_enc_dict[col_name] = OrdinalEncoder()
         col = df[col_name]
 
-        # Select the non-null values in the column (optional)
+        # Select the non-null values in the column 
         col_not_null = col[col.notnull()]
 
-        # Check if there are non-null values before encoding (optional)
+        # Check if there are non-null values before encoding 
         if col_not_null.size > 0:
             reshaped_vals = col_not_null.values.reshape(-1, 1)
-            # Encode the non-null values of the column (optional)
+            # Encode the non-null values of the column 
             encoded_vals = ordinal_enc_dict[col_name].fit_transform(reshaped_vals)
-            # Replace the values in the column with ordinal values (optional)
+            # Replace the values in the column with ordinal values 
             df.loc[col.notnull(), col_name] = np.squeeze(encoded_vals)
 
     # KNN Imputation
@@ -88,22 +88,22 @@ def impute_missing_values(dataset_path, column_name, imputation_method):
     # Impute missing values in the chosen column
     
 
-    # Loop over columns to encode (optional)
+    # Loop over columns to encode 
     ordinal_enc_dict = {}
     for col_name in df:
-        # Create ordinal encoder for the column (optional)
+        # Create ordinal encoder for the column 
         ordinal_enc_dict[col_name] = OrdinalEncoder()
         col = df[col_name]
 
-        # Select the non-null values in the column (optional)
+        # Select the non-null values in the column 
         col_not_null = col[col.notnull()]
 
-        # Check if there are non-null values before encoding (optional)
+        # Check if there are non-null values before encoding 
         if col_not_null.size > 0:
             reshaped_vals = col_not_null.values.reshape(-1, 1)
-            # Encode the non-null values of the column (optional)
+            # Encode the non-null values of the column 
             encoded_vals = ordinal_enc_dict[col_name].fit_transform(reshaped_vals)
-            # Replace the values in the column with ordinal values (optional)
+            # Replace the values in the column with ordinal values 
             df.loc[col.notnull(), col_name] = np.squeeze(encoded_vals)
 
     # KNN Imputation
@@ -115,7 +115,7 @@ def impute_missing_values(dataset_path, column_name, imputation_method):
     imputed_data = KNN_imputer.fit_transform(df_KNN_imputed[[column_name]])
     df_KNN_imputed[column_name] = imputed_data[:, 0] 
 
-    # Optional inverse transformation for ordinal encoding (corrected)
+    #  inverse transformation for ordinal encoding (corrected)
     for col_name in df_KNN_imputed:
         if col_name in ordinal_enc_dict:  # Check if encoded
             reshaped_values = df_KNN_imputed[col_name].values.reshape(-1, 1)

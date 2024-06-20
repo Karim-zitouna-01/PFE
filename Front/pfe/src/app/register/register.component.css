@@ -86,6 +86,21 @@
     width: 7cm;
   }
 
+  .password-toggle {
+    display: flex;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: small;
+    color: aliceblue;
+    width: 2.7cm;
+  }
+  .password-toggle:hover {
+    color:rgb(234, 127, 34); ;
+    
+  }
+
   form{
     /* background-color: aliceblue; */
   }

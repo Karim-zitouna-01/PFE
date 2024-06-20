@@ -29,7 +29,7 @@ export class DataDivisionComponent implements OnInit {
       alert(" the size should be between 0 and 99");
       return;
     }
-    const url = `http://localhost:8000/api/divide/`;  // Replace with your actual API endpoint
+    const url = `http://localhost:8000/api/divide/`;  
     const body = {
       dataset_id: this.datasetId,
       test_size: this.testSize/100,
@@ -46,7 +46,7 @@ export class DataDivisionComponent implements OnInit {
         link.setAttribute('download', filename);
         link.click();  // Simulate a click to trigger download
 
-        // Optional: Revoke the temporary URL after download (recommended)
+        // Optional: Revoke the temporary URL after download (recommended by  stack overflow)
         window.URL.revokeObjectURL(link.href);
       }, error => {
         console.error('Error during data division:', error);

@@ -17,9 +17,7 @@ import pandas as pd
 
 class DataDivisionView(APIView):
     def post(self, request):
-        """
-        API endpoint to perform data division and return a ZIP archive.
-        """
+
         print(request.data)
         dataset_id = request.data.get('dataset_id')
         test_size = float(request.data.get('test_size'))
@@ -37,8 +35,8 @@ class DataDivisionView(APIView):
             if test_size + train_size != 1:
                 return Response({'error': 'Test and train size must add up to 1.'}, status=HTTP_400_BAD_REQUEST)
 
-            # Access the dataset data (replace with your logic based on storage)
-            # Option 1: Access data stored as a field in the dataset model
+            # Access the dataset data 
+            # Access data stored as a field in the dataset model
             data = dataset.uploaded_file  # Assuming data is stored as a field
 
             # Perform data division using pandas

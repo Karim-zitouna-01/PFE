@@ -25,7 +25,7 @@
       <select [(ngModel)]="selectedVisType">
         <option value="numeric">Numeric Distribution</option>
         <option value="categorical">Categorical Distribution</option>
-        <option value="relationship">Relationship Between Features</option>
+        <option value="relationship">Correlation Between Features</option>
       </select>
       <div *ngIf="selectedVisType === 'numeric'">
         <span>Select Column: <b>{{ selectedColumn }}</b></span>
@@ -49,7 +49,9 @@
         <span *ngIf="selectedVisFeature1 && !selectedVisFeature2">Select second feature:</span>
         <span *ngIf="selectedVisFeature2">Selected second feature: {{ selectedVisFeature2 }}</span>
         <input *ngIf="selectedVisFeature1 && !selectedVisFeature2" type="text" [(ngModel)]="selectedColumn" (blur)="updateFeature2()">
+        <button class="cancel-button" *ngIf="selectedVisFeature1 && selectedVisFeature2" (click)="clearFeatureSelection()">Cancel Selection</button>
       </div>
+      
       <button class="visualize-button" (click)="getVisualization()">Visualize</button>
   </div>
   

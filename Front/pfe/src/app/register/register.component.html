@@ -37,13 +37,16 @@
         </div>
         <label for="password">Password</label>
         <input
-          type="password"
+          [type]="showPassword? 'text' : 'password'"
           id="password"
           formControlName="password"
           class="form-control"
           placeholder="Password"
           required
         />
+        <span class="password-toggle" (click)="togglePasswordVisibility()">
+          Show Password
+        </span>
         <div *ngIf="submitted && form.get('password')?.hasError('required')">
           Password is required.
         </div>

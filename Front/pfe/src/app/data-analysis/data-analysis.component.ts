@@ -149,11 +149,17 @@ getVisualization() {
   }
 
   // Send the GET request to the server to retrieve the visualization image
-  this.http.get(url, { responseType: 'blob', params }).subscribe(response => {
+  this.http.get(url, { responseType: 'blob', params })
+  .subscribe(response => {
     // Create a URL for the image and set it as the source of the <img> element
     const url = URL.createObjectURL(response);
     this.visualizationImage = url;
     this.visualizationImageReady.emit(this.visualizationImage);
+  },
+  (error) => {
+    console.error('Error retrieving visualization image:', error);
+    alert('An error occurred while generating the visualization image for '+'"'+this.selectedColumn+'"'); // User-friendly error message
+    
   });
 }
 
@@ -178,24 +184,32 @@ getVisualization() {
       requestBody['column_name'] = this.selectedColumn;
       const url = 'http://localhost:8000/api/analysis/columnStats'; // Replace with your API endpoint
       this.http.get<any>(url, { params: requestBody })
-        .subscribe(data => {
-          console.log("Column Statistics:");
-          console.log(data);
-          this.statisticsData = { data_stats: data };
-          console.log(this.statisticsData);
-        });
+      .subscribe(data => {
+        console.log("Column Statistics:");
+        console.log(data);
+        this.statisticsData = { data_stats: data };
+        console.log(this.statisticsData);
+      },
+      (error) => {
+        console.error('Error retrieving column statistics:', error);
+        alert('An error occurred while retrieving column statistics.'); // User-friendly error message
+      });
     } else {
       const url = 'http://localhost:8000/api/analysis/datasetStats'; // Replace with your API endpoint
       this.http.get<any>(url, { params: requestBody })
-        .subscribe(data => {
-          console.log("Dataset Statistics:");
-          console.log(data);
-          this.statisticsData = data;
-          console.log(this.statisticsData);
-          this.nb_rows=data.num_rows;
-          this.nb_columns=data.num_columns;
-          console.log("Number of Rows:", data.num_rows);
-        });
+      .subscribe(data => {
+        console.log("Dataset Statistics:");
+        console.log(data);
+        this.statisticsData = data;
+        console.log(this.statisticsData);
+        this.nb_rows=data.num_rows;
+        this.nb_columns=data.num_columns;
+        console.log("Number of Rows:", data.num_rows);
+      },
+      (ERROR) => {
+        console.error('Error retrieving dataset statistics:', ERROR);
+        alert('An error occurred while retrieving dataset statistics.'); // User-friendly error message
+      });
     }
   }
 
@@ -222,9 +236,14 @@ getVisualization() {
 
 
 
+  clearFeatureSelection() {
+    this.selectedVisFeature1 = '';
+    this.selectedVisFeature2 = '';
+  }
 
-  // Call an API endpoint to get column names (assuming an endpoint exists)
-  // This can be done in ngOnInit or a separate method based on your needs
+
+  // Call an API endpoint to get column names 
+  // This can be done in ngOnInit or a separate method 
   getColumnNames() {
     if (this.datasetId) {
       this.http.get<string[]>('http://localhost:8000/api/datasets/' + this.datasetId + '/columns/') // Replace with your API endpoint

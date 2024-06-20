@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 export class RegisterComponent implements OnInit {
   form!: FormGroup;
   submitted = false;
+  showPassword = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -61,6 +62,10 @@ export class RegisterComponent implements OnInit {
   
       return null;
     };
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
 submit(): void {

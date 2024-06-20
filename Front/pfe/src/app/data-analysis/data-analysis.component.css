@@ -38,7 +38,17 @@
     width: 150px;
     margin-right: 10px;
   }
-  
+  .data-analysis .cancel-button{
+    background-color: #f2f2f2; 
+    color: #000;
+    border-radius: 2px;
+    width: 45%;
+    padding: 0;
+    margin-left: 20%;
+  }
+  .data-analysis .cancel-button:hover{
+    color: red;
+  }
   .data-analysis button {
     background-color: #f17b13; /* Orange color as in image */
     color: #fff; /* White text color */
