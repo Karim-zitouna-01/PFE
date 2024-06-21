@@ -4,13 +4,13 @@
 
 DataPrism is a web application designed to simplify the cleaning, transformation, analysis, and division of datasets. It offers an intuitive interface that allows users to perform various data preprocessing tasks without the need for coding knowledge.
 
-This project was realized as part of my final year project at the Faculty of Sciences of Monastir [FSM](http://www.fsm.rnu.tn/) for the academic year 2023-2024.
+This project was realized as my end of studies project at the Faculty of Sciences of Monastir [FSM](http://www.fsm.rnu.tn/) for the academic year 2023-2024.
 
 ## Demo
 
 To get a better understanding of how DataPrism works, you can watch the demo video below:
 
-[![Watch the video](https://drive.google.com/file/d/1UR9NVP21sbZCYChjFe567htSArwGzOdq/view?usp=sharing)](https://www.youtube.com/watch?v=your-video-id)
+[![Watch the video](Front/pfe/src/assets/cover.png)](https://www.youtube.com/watch?v=your-video-id)
 
 ## Features
 
