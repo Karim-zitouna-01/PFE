@@ -88,7 +88,7 @@ To get a better understanding of how DataPrism works, you can watch the demo vid
 
 We would like to express my gratitude to:
 
-- My academic advisor, [Dr. Salma Chaieb], for her guidance and support.
+- My academic advisor, [Dr. Salma Chaieb](https://www.linkedin.com/in/salma-chaieb-760908141/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3BMfa%2F9eySTMykum8fBikljQ%3D%3D), for her guidance and support.
 - freeCodeCamp for their high-quality free courses.
 - Stack Overflow for being an invaluable resource for troubleshooting and learning.
 - The authors of the tutorials and resources that helped me throughout the development process.
