@@ -6,11 +6,24 @@ DataPrism is a web application designed to simplify the cleaning, transformation
 
 This project was realized as my end of studies project at the Faculty of Sciences of Monastir [FSM](http://www.fsm.rnu.tn/) for the academic year 2023-2024.
 
+## User interfaces
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1rUaA05DPA99UwdmKTWfi-qAghuoLtk1E" alt="Home Page" width="450"/>
+  <img src="https://drive.google.com/uc?export=view&id=1Aou92K-xZTrnmyZxchUQk63JBZUNKCav" alt="Sign-up Page" width="450"/>
+  <img src="https://drive.google.com/uc?export=view&id=167-dvsmrUYo2DhfqUFbCw7bEzsWOkAqB" alt="Login Page" width="450"/>
+  <img src="https://drive.google.com/uc?export=view&id=15ajjyYnqCNPp7DTZIYU7EoymY4yNZZVM" alt="UI" width="450"/>
+  <img src="https://drive.google.com/uc?export=view&id=10qmmVnUWs_oDGkd3vaJWioUl4UCDi9sw" alt="Discretization" width="450"/>
+  <img src="https://drive.google.com/uc?export=view&id=1lbp_kM9ylxB4VrY3WiFqZVVk1wX0TdMh" alt="Analysis" width="450"/>
+  <img src="https://drive.google.com/uc?export=view&id=1Vo6ZYiyhdG-hY5ubN5BLMoNJQtAIKNit" alt="Analysis2" width="450"/>
+  <img src="https://drive.google.com/uc?export=view&id=1j8gSi0LGM70QFhPT5t686BfjyTugohhR" alt="Analysis3" width="450"/>
+</p>
+
+
 ## Demo
 
 To get a better understanding of how DataPrism works, you can watch the demo video below:
 
-[![Watch the video](Front/pfe/src/assets/cover.png)](https://www.youtube.com/watch?v=your-video-id)
+[![Watch the video](Front/pfe/src/assets/cover.png)](https://drive.google.com/file/d/1HtnmikjqqJ0g_XBnhPOH4CMkwPzkOOye/view?usp=sharing)
 
 ## Features
 
@@ -89,8 +102,8 @@ To get a better understanding of how DataPrism works, you can watch the demo vid
 We would like to express my gratitude to:
 
 - My academic advisor, [Dr. Salma Chaieb](https://www.linkedin.com/in/salma-chaieb-760908141/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3BMfa%2F9eySTMykum8fBikljQ%3D%3D), for her guidance and support.
-- freeCodeCamp for their high-quality free courses.
-- Stack Overflow for being an invaluable resource for troubleshooting and learning.
+- [freeCodeCamp](https://www.youtube.com/@freecodecamp) for their high-quality free courses.
+- [Stack Overflow community](https://stackoverflow.com/) for being an invaluable resource for troubleshooting and learning.
 - The authors of the tutorials and resources that helped me throughout the development process.
 
 ## Resources
