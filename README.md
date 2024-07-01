@@ -8,14 +8,14 @@ This project was realized as my end of studies project at the Faculty of Science
 
 ## User interfaces
 <p >
-  <img src="https://drive.google.com/uc?export=view&id=1rUaA05DPA99UwdmKTWfi-qAghuoLtk1E" alt="Home Page" width="450"/>
-  <img src="https://drive.google.com/uc?export=view&id=1Aou92K-xZTrnmyZxchUQk63JBZUNKCav" alt="Sign-up Page" width="450"/>
-  <img src="https://drive.google.com/uc?export=view&id=167-dvsmrUYo2DhfqUFbCw7bEzsWOkAqB" alt="Login Page" width="450"/>
-  <img src="https://drive.google.com/uc?export=view&id=15ajjyYnqCNPp7DTZIYU7EoymY4yNZZVM" alt="UI" width="450"/>
-  <img src="https://drive.google.com/uc?export=view&id=10qmmVnUWs_oDGkd3vaJWioUl4UCDi9sw" alt="Discretization" width="450"/>
-  <img src="https://drive.google.com/uc?export=view&id=1lbp_kM9ylxB4VrY3WiFqZVVk1wX0TdMh" alt="Analysis" width="450"/>
-  <img src="https://drive.google.com/uc?export=view&id=1Vo6ZYiyhdG-hY5ubN5BLMoNJQtAIKNit" alt="Analysis2" width="450"/>
-  <img src="https://drive.google.com/uc?export=view&id=1j8gSi0LGM70QFhPT5t686BfjyTugohhR" alt="Analysis3" width="450"/>
+  <img src="https://drive.google.com/uc?export=view&id=1rUaA05DPA99UwdmKTWfi-qAghuoLtk1E" alt="Home Page" width="400"/>
+  <img src="https://drive.google.com/uc?export=view&id=1Aou92K-xZTrnmyZxchUQk63JBZUNKCav" alt="Sign-up Page" width="400"/>
+  <img src="https://drive.google.com/uc?export=view&id=167-dvsmrUYo2DhfqUFbCw7bEzsWOkAqB" alt="Login Page" width="400"/>
+  <img src="https://drive.google.com/uc?export=view&id=15ajjyYnqCNPp7DTZIYU7EoymY4yNZZVM" alt="UI" width="400"/>
+  <img src="https://drive.google.com/uc?export=view&id=10qmmVnUWs_oDGkd3vaJWioUl4UCDi9sw" alt="Discretization" width="400"/>
+  <img src="https://drive.google.com/uc?export=view&id=1lbp_kM9ylxB4VrY3WiFqZVVk1wX0TdMh" alt="Analysis" width="400"/>
+  <img src="https://drive.google.com/uc?export=view&id=1Vo6ZYiyhdG-hY5ubN5BLMoNJQtAIKNit" alt="Analysis2" width="400"/>
+  <img src="https://drive.google.com/uc?export=view&id=1j8gSi0LGM70QFhPT5t686BfjyTugohhR" alt="Analysis3" width="400"/>
 </p>
 
 
