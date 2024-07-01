@@ -7,7 +7,7 @@ DataPrism is a web application designed to simplify the cleaning, transformation
 This project was realized as my end of studies project at the Faculty of Sciences of Monastir [FSM](http://www.fsm.rnu.tn/) for the academic year 2023-2024.
 
 ## User interfaces
-<p align="center">
+<p >
   <img src="https://drive.google.com/uc?export=view&id=1rUaA05DPA99UwdmKTWfi-qAghuoLtk1E" alt="Home Page" width="450"/>
   <img src="https://drive.google.com/uc?export=view&id=1Aou92K-xZTrnmyZxchUQk63JBZUNKCav" alt="Sign-up Page" width="450"/>
   <img src="https://drive.google.com/uc?export=view&id=167-dvsmrUYo2DhfqUFbCw7bEzsWOkAqB" alt="Login Page" width="450"/>
