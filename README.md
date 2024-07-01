@@ -99,7 +99,7 @@ To get a better understanding of how DataPrism works, you can watch the demo vid
 
 ### Acknowledgements
 
-We would like to express my gratitude to:
+I would like to express my gratitude to:
 
 - My academic advisor, [Dr. Salma Chaieb](https://www.linkedin.com/in/salma-chaieb-760908141/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3BMfa%2F9eySTMykum8fBikljQ%3D%3D), for her guidance and support.
 - [freeCodeCamp](https://www.youtube.com/@freecodecamp) for their high-quality free courses.
